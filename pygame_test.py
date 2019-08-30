@@ -50,9 +50,9 @@ while True:
         if B == 1:
             print('B pressed')
         if X == 1:
-            print('A pressed')
+            print('X pressed')
         if Y == 1:
-            print('B pressed')
+            print('Y pressed')
 
         if LB == 1:
             print('LB pressed')
