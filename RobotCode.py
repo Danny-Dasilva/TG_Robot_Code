@@ -86,10 +86,10 @@ while True:
             LBservo = gamepad.get_button(3)
 
 
-            armA_forward = gamepad.get_button(0)
-            armA_back = gamepad.get_button(1)
-            armB_forward = gamepad.get_button(2)
-            armB_back = gamepad.get_button(3)
+            armA_forward = gamepad.get_button(4)
+            armA_back = gamepad.get_button(5)
+            armB_forward = gamepad.get_button(6)
+            armB_back = gamepad.get_button(7)
 
 
 
@@ -155,11 +155,7 @@ while True:
             
         
         
-        
- 
 
-
-#pygame.quit()
 
 
 
