@@ -54,7 +54,7 @@ Tank Drive
               Empty -> 14  
               Empty -> 15  
 
-Drivetrain - Left strick and Right stick control respective Left and Right sides
+Drivetrain - Left stick and Right stick control respective Left and Right sides
 Arm 1      - Motor mapped to Joystick buttons, LB to go forward RB to go back
 Arm 2      - Motor mapped to Joystick buttons, LT to go forward RT to go back
 Servo 1    - Increments servo on button press, A increases values B decreases values
