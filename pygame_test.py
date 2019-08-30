@@ -64,9 +64,9 @@ while True:
             print('RT pressed')
         
         if  abs(leftstick) > .05:
-            print(f'leftstick {leftstick}')
+            print('leftstick', leftstick)
         if  abs(rightstick) > .05:
-            print(f'rightstick {rightstick}')
+            print('rightstick', rightstick)
 
 
 
