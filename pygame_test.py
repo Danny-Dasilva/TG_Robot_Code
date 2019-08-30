@@ -1,10 +1,14 @@
 
+# Simple pygame test for the google coral
+# This will move channel 0 from min to max position repeatedly.
+# Author: Danny Dasilva
+# License: Public Domain 
+
 from __future__ import division
-import time
-from time import sleep
 import pygame
 from time import sleep
 import os
+# This is set because normally pygame uses this video drive but the google coral does not support it
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
