@@ -1,7 +1,4 @@
-# Simple demo of of the PCA9685 PWM servo/LED controller library.
-# This will move channel 0 from min to max position repeatedly.
-# Author: Tony DiCola
-# License: Public Domain 
+
 from __future__ import division
 import time
 from time import sleep
@@ -22,17 +19,9 @@ else:
 
 
 while True:
-    
+
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
-        if joystick_count != 0:
-            print('joystick not 0')
-    
-        else:
-            print('666')
-    
+        pygame.event.get()
        
         
 
