@@ -52,7 +52,7 @@ while True:
             
             print("armA_forward active")
         elif val_2 == 1:
-            print(f"armA_back")
+            print("armA_back")
         else:
             print('no val')
         
