@@ -12,9 +12,9 @@ from adafruit_servokit import ServoKit
 
 # setting 16 channels for hat as well as i2c address to 70
 kit = ServoKit(channels=16, address=112)
-
-
 pygame.init()
+
+
 
 # Drivetrain Motors
 motor_1 = 0
@@ -23,10 +23,29 @@ motor_3 = 0
 motor_4 = 0
 
 # Arm Motors
-motor_5 = 0
-motor_6 = 0
+arm_1 = 0
+arm_2 = 0
 
 
+
+servo_5 = 0
+servo_6 = 0
+
+
+
+#Pinout map 
+'''
+0 left motor
+1 right motor
+2 left motor 2
+3 right motor 2
+
+4 arm motor 1
+5 arm motor 2
+6 servo 1
+7 servo 2
+
+'''
 
 
 # Alternatively specify a different address and/or bus:
@@ -74,66 +93,69 @@ while True:
 
 
 
-            leftstick = gamepad.get_axis(1)
-            rightstick = gamepad.get_axis(4)
 
             
         else:
-            leftstick = 0
-            rightstick = 0
-            Lservo = 0
-            Rservo = 0
-            Lservo2 = 0
-            Rservo2 = 0
-        if Lservo2 == 1:
-            motor_4 = motor_4 + .3
-            if motor_4 > servo_max:
-                motor_4 = servo_max
-            print("Lservo active")
-        elif Rservo2 == 1:
-            motor_4 = motor_4 - .3
-            if motor_4 < servo_min:
-                motor_4 = servo_min
-            print("Rservo active")
+            LAservo = 0
+            RAservo = 0
+            LBLservo = 0
+            LBservo = 0
+
+
+            armA_forward = 0
+            armA_back = 0
+            armB_forward = 0
+            armB_back = 0
+
+
+
+
+
+        #  Arm motor
+        if armA_forward == 1:
+            kit.continuous_servo[4].throttle = 1
             
-        if Lservo == 1:
-            motor_3 = (185 * Lservo +380)
-            
-            print("Lservo active")
-        elif Rservo == 1:
-            motor_3 = (185 * -Rservo +380)
-            
-            print("Rservo active")
+            print("armA_forward active")
+        elif armA_back == 1:
+            kit.continuous_servo[4].throttle = -1
+            print(f"armA_back")
         else:
-            motor_3 = 0
+            kit.continuous_servo[4].throttle = 0.05
         
-        #if motor_3 > 359:
-            #motor_3 = 0
-        #elif motor_3 < 0:
-            #motor_3 = 359
+
+
+        # one servo
+        if LAservo == 1:
+            servo_5 = servo_5 + .3
+            if servo_5 > aservo_max:
+                servo_5 = aservo_max
+            kit.servo[6].angle = servo_5
+            print("LAservo active")
+        elif RAservo == 1:
+            servo_5 = servo_5 - .3
+            if servo_5 < aservo_min:
+                servo_5 = aservo_min
+            kit.servo[6].angle = servo_5
+            print("RAservo active")
+
+
+
+        # Joystick Val
         if  abs(leftstick) > .05:
-            motor_1 = (185 * leftstick + 385)
-            print('left code running')
+            kit.continuous_servo[0].throttle = leftstick
+            print('leftstick')
         if  abs(leftstick) < .05:
-            motor_1 = 0
-            print('left not running')
+            kit.continuous_servo[0].throttle = 0.05
         if  abs(rightstick) > .05:
-            motor_2 = (185 * -rightstick + 385)
-            print('right code running')
+            kit.continuous_servo[1].throttle = -rightstick
+            print('rightstick')
         if  abs(rightstick) < .05:
-            motor_2 = 0
-            print('right not running')
+              kit.continuous_servo[1].throttle = 0.05
+
             
         
         
         
-        
-        
-        print("Motor_3: ", motor_3)
-        pwm.set_pwm(0, 0, int(motor_1))
-        pwm.set_pwm(1,0, int(motor_2))
-        pwm.set_pwm(2, 0, int(motor_3))
-        pwm.set_pwm(3, 0, int(motor_4))
  
 
 
