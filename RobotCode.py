@@ -128,13 +128,13 @@ while True:
 
         #  Arm B motor
         if LB == 1:
-            kit.continuous_servo[4].throttle = 1
+            kit.continuous_servo[5].throttle = 1
             print("armB_forward")
         elif RB == 1:
-            kit.continuous_servo[4].throttle = -1
+            kit.continuous_servo[5].throttle = -1
             print("armB_back")
         else:
-            kit.continuous_servo[4].throttle = 0.05
+            kit.continuous_servo[5].throttle = 0.05
         
         
 
@@ -158,13 +158,13 @@ while True:
             servo_5 = servo_5 + .2
             if servo_5 > aservo_max:
                 servo_5 = aservo_max
-            kit.servo[5].angle = servo_5
+            kit.servo[7].angle = servo_5
             print("LBservo active")
         elif Y == 1:
             servo_5 = servo_5 - .2
             if servo_5 < aservo_min:
                 servo_5 = aservo_min
-            kit.servo[5].angle = servo_5
+            kit.servo[7].angle = servo_5
             print("RBservo active")
 
 
