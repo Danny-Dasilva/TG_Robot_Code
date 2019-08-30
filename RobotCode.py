@@ -121,7 +121,7 @@ while True:
             print("armA_forward active")
         elif armA_back == 1:
             kit.continuous_servo[4].throttle = -1
-            print(f"armA_back")
+            print("armA_back")
         else:
             kit.continuous_servo[4].throttle = 0.05
         
