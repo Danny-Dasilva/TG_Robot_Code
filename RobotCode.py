@@ -127,10 +127,10 @@ while True:
             kit.continuous_servo[4].throttle = 0.05
 
         #  Arm B motor
-        if LB == 1:
+        if LT == 1:
             kit.continuous_servo[5].throttle = 1
             print("armB_forward")
-        elif RB == 1:
+        elif RT == 1:
             kit.continuous_servo[5].throttle = -1
             print("armB_back")
         else:
