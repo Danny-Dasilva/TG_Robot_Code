@@ -30,19 +30,43 @@ while True:
         if event.type == pygame.QUIT:
             done = True
         if joystick_count != 0:
+            leftstick = gamepad.get_axis(1)
+            rightstick = gamepad.get_axis(4)
             A = gamepad.get_button(0)
             B = gamepad.get_button(1)
+            X = gamepad.get_button(2)
+            Y = gamepad.get_button(3)
+            LB = gamepad.get_button(4)
+            RB = gamepad.get_button(5)
+            LT = gamepad.get_button(6)
+            RT = gamepad.get_button(7)
     
         else:
             A = 0
             B = 0
-    
+
         if A == 1:
             print('A pressed')
         if B == 1:
             print('B pressed')
-        
+        if X == 1:
+            print('A pressed')
+        if Y == 1:
+            print('B pressed')
 
+        if LB == 1:
+            print('LB pressed')
+        if RB == 1:
+            print('RB pressed')
+        if LT == 1:
+            print('LT pressed')
+        if RT == 1:
+            print('RT pressed')
+        
+        if  abs(leftstick) > .05:
+            print(f'leftstick {leftstick}')
+        if  abs(rightstick) > .05:
+            print(f'rightstick {rightstick}')
 
 
 
