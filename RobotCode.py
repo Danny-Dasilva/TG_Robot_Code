@@ -55,8 +55,8 @@ servo_6 = 0
 #pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
 
 # Configure min and max servo pulse lengths
-aservo_min = 124  
-aservo_max = 494
+aservo_min = 0  
+aservo_max = 180
 
 
 bservo_min = 124  
@@ -117,7 +117,6 @@ while True:
         #  Arm motor
         if armA_forward == 1:
             kit.continuous_servo[4].throttle = 1
-            
             print("armA_forward active")
         elif armA_back == 1:
             kit.continuous_servo[4].throttle = -1
@@ -129,13 +128,13 @@ while True:
 
         # one servo
         if LAservo == 1:
-            servo_5 = servo_5 + .3
+            servo_5 = servo_5 + .1
             if servo_5 > aservo_max:
                 servo_5 = aservo_max
             kit.servo[6].angle = servo_5
             print("LAservo active")
         elif RAservo == 1:
-            servo_5 = servo_5 - .3
+            servo_5 = servo_5 - .1
             if servo_5 < aservo_min:
                 servo_5 = aservo_min
             kit.servo[6].angle = servo_5
