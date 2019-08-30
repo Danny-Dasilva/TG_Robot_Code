@@ -33,10 +33,11 @@ while True:
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
     # for event in pygame.event.get():
     #     if event.type == pygame.QUIT:
-    #         done = True
+    #         done = True   
+    # D mode
     if joystick_count != 0:
         leftstick = gamepad.get_axis(1)
-        rightstick = gamepad.get_axis(4)
+        rightstick = gamepad.get_axis(3)
         A = gamepad.get_button(0)
         B = gamepad.get_button(1)
         X = gamepad.get_button(2)
