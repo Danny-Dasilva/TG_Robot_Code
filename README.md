@@ -56,11 +56,11 @@ Tank Drive
 
 Right Drivetrain A  - Ground
 Drivetrain - Left strick and Right stick control respective Left and Right sides
-Motor Arm 1   - Motor mapped to Joystick buttons, LB to go forward RB to go back
-Motor Arm 2   - Motor mapped to Joystick buttons, LT to go forward RT to go back
-Servo 1  - Increments servo on button press, A increases values B decreases values
-Servo 2  - Increments servo on button press, A increases values B decreases values
-Empty   - Not currently mapped anywhere
+   Arm 1   - Motor mapped to Joystick buttons, LB to go forward RB to go back
+   Arm 2   - Motor mapped to Joystick buttons, LT to go forward RT to go back
+  Servo 1  - Increments servo on button press, A increases values B decreases values
+  Servo 2  - Increments servo on button press, A increases values B decreases values
+   Empty   - Not currently mapped anywhere
 ```
 ## Mecanum Drive
  
@@ -78,8 +78,8 @@ Mecanum Drive
    Front Left Drive -> 1    
     Back Left Drive -> 2   
   Front Right Drive -> 3  
-        Motor Arm 1 -> 4   
-        Motor Arm 2 -> 5  
+              Arm 1 -> 4   
+              Arm 2 -> 5  
             Servo 1 -> 6  
             Servo 2 -> 7
               Empty -> 8  
@@ -92,12 +92,13 @@ Mecanum Drive
               Empty -> 15  
 
 Right Drivetrain A  - Ground
-Drive - Motor location for each Mecanum wheel. Left stick controls forward, back 
-        and strafe. Right stick controls turning
-Motor Arm 1   - Motor mapped to Joystick buttons, LB to go forward RB to go back
-Motor Arm 2   - Motor mapped to Joystick buttons, LT to go forward RT to go back
+Drive    - Motor location for each Mecanum wheel. Left stick controls forward, back 
+           and strafe. Right stick controls turning
+Arm 1    - Motor mapped to Joystick buttons, LB to go forward RB to go back
+Arm 2    - Motor mapped to Joystick buttons, LT to go forward RT to go back
 Servo 1  - Increments servo on button press, A increases values B decreases values
 Servo 2  - Increments servo on button press, A increases values B decreases values
-Empty   - Not currently mapped anywhere
+Empty    - Not currently mapped anywhere
+
 
 ```
