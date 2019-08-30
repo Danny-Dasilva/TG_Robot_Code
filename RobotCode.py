@@ -1,7 +1,8 @@
-# Simple demo of of the PCA9685 PWM servo/LED controller library.
-# This will move channel 0 from min to max position repeatedly.
-# Author: Tony DiCola
+# Tank drive code for the google coral
+# Author: Danny Dasilva
 # License: Public Domain 
+
+
 from __future__ import division
 import time
 from time import sleep
@@ -16,7 +17,6 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 # setting 16 channels for hat as well as i2c address to 70
 kit = ServoKit(channels=16, address=112)
 pygame.init()
-
 
 
 # Drivetrain Motors

@@ -1,7 +1,8 @@
-# Simple demo of of the PCA9685 PWM servo/LED controller library.
-# This will move channel 0 from min to max position repeatedly.
-# Author: Tony DiCola
+# Mecanum code for the google coral
+# Author: Danny Dasilva
 # License: Public Domain 
+
+
 from __future__ import division
 import time
 from time import sleep

@@ -1,6 +1,6 @@
 
 # Simple pygame test for the google coral
-# This will move channel 0 from min to max position repeatedly.
+# Maps the gamepad for a Logitech controller
 # Author: Danny Dasilva
 # License: Public Domain 
 
