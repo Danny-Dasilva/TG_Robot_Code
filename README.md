@@ -21,7 +21,7 @@ Google coral Robot Code with the adafruit servokit library
  
  `python3 pygame.py`
  
- Plug in a motor or servo on pin 1 to test the servokit library
+ Plug in a motor or servo on `pin 1` to test the servokit library
  
  `sudo python3 simple_test.py`
  
