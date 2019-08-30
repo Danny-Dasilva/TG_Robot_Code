@@ -6,9 +6,12 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
-# Import the PCA9685 module.
-from adafruit_servokit import ServoKit
 
+from adafruit_servokit import ServoKit
+import os
+# This is set because normally pygame uses this video drive but the google coral does not support it
+
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # setting 16 channels for hat as well as i2c address to 70
 kit = ServoKit(channels=16, address=112)
