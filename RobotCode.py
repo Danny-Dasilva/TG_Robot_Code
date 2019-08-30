@@ -6,26 +6,40 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
-import Adafruit_PCA9685
-sleep(10)
+# Import the PCA9685 module.
+from adafruit_servokit import ServoKit
+
+
+# setting 16 channels for hat as well as i2c address to 70
+kit = ServoKit(channels=16, address=112)
+
+
 pygame.init()
 
-
-# Initialise the PCA9685 using the default address (0x40).
-pwm = Adafruit_PCA9685.PCA9685()
+# Drivetrain Motors
 motor_1 = 0
 motor_2 = 0
 motor_3 = 0
-motor_4 = 300
+motor_4 = 0
+
+# Arm Motors
+motor_5 = 0
+motor_6 = 0
+
+
+
+
+# Alternatively specify a different address and/or bus:
+#pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
+
 # Configure min and max servo pulse lengths
-servo_min = 200
-servo_max = 494
+aservo_min = 124  
+aservo_max = 494
 
 
-# Set frequency to 60hz, good for servos.
-pwm.set_pwm_freq(60)
+bservo_min = 124  
+bservo_max = 494
 
-print('Moving servo on channel 0, press Ctrl-C to quit...')
 
 joystick_count = pygame.joystick.get_count()
 if joystick_count == 0:
@@ -46,10 +60,24 @@ while True:
         if joystick_count != 0:
             leftstick = gamepad.get_axis(1)
             rightstick = gamepad.get_axis(4)
-            Lservo = gamepad.get_button(0)
-            Rservo = gamepad.get_button(1)
-            Lservo2 = gamepad.get_button(2)
-            Rservo2 = gamepad.get_button(3)
+
+            LAservo = gamepad.get_button(0)
+            RAservo = gamepad.get_button(1)
+            LBLservo = gamepad.get_button(2)
+            LBservo = gamepad.get_button(3)
+
+
+            armA_forward = gamepad.get_button(0)
+            armA_back = gamepad.get_button(1)
+            armB_forward = gamepad.get_button(2)
+            armB_back = gamepad.get_button(3)
+
+
+
+            leftstick = gamepad.get_axis(1)
+            rightstick = gamepad.get_axis(4)
+
+            
         else:
             leftstick = 0
             rightstick = 0

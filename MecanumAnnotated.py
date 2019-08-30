@@ -3,36 +3,41 @@ import time
 import pygame
 import math as Math
 # Import the PCA9685 module.
-import Adafruit_PCA9685
+from adafruit_servokit import ServoKit
+
+
+# setting 16 channels for hat as well as i2c address to 70
+kit = ServoKit(channels=16, address=112)
+
 
 pygame.init()
 
-
-# Uncomment to enable debug output.
-#import logging
-#logging.basicConfig(level=logging.DEBUG)
-
-# Initialise the PCA9685 using the default address (0x40).
-pwm = Adafruit_PCA9685.PCA9685()
+# Drivetrain Motors
 motor_1 = 0
 motor_2 = 0
 motor_3 = 0
 motor_4 = 0
-x_coord = 0
+
+# Arm Motors
+motor_5 = 0
+motor_6 = 0
+motor_7 = 0
+motor_8 = 0
+
+
+
 # Alternatively specify a different address and/or bus:
 #pwm = Adafruit_PCA9685.PCA9685(address=0x41, busnum=2)
 
 # Configure min and max servo pulse lengths
-servo_min = 124  # Min pulse length out of 4096
-servo_max = 494
-# Max pulse length out of 4096
+aservo_min = 124  
+aservo_max = 494
 
 
+bservo_min = 124  
+bservo_max = 494
 
-# Set frequency to 60hz, good for servos.
-pwm.set_pwm_freq(50)
 
-print('Moving servo on channel 0, press Ctrl-C to quit...')
 
 joystick_count = pygame.joystick.get_count()
 if joystick_count == 0:
