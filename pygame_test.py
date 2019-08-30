@@ -30,12 +30,17 @@ while True:
         if event.type == pygame.QUIT:
             done = True
         if joystick_count != 0:
-            print('joystick not 0')
+            A = gamepad.get_button(0)
+            B = gamepad.get_button(1)
     
         else:
-            print('666')
+            A = 0
+            B = 0
     
-       
+        if A == 1:
+            print('A pressed')
+        if B == 1:
+            print('B pressed')
         
 
 
