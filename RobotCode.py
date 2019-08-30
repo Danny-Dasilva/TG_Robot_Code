@@ -85,9 +85,9 @@ while True:
             rightstick = gamepad.get_axis(3)
 
 
-            A = gamepad.get_button(0)
-            B = gamepad.get_button(1)
-            X = gamepad.get_button(2)
+            A = gamepad.get_button(1)
+            B = gamepad.get_button(2)
+            X = gamepad.get_button(0)
             Y = gamepad.get_button(3)
 
 
@@ -172,14 +172,18 @@ while True:
         # Joystick Val
         if  abs(leftstick) > .05:
             kit.continuous_servo[0].throttle = leftstick
+            kit.continuous_servo[2].throttle = leftstick
             print('leftstick')
         if  abs(leftstick) < .05:
             kit.continuous_servo[0].throttle = 0.05
+            kit.continuous_servo[2].throttle = 0.05
         if  abs(rightstick) > .05:
             kit.continuous_servo[1].throttle = -rightstick
+            kit.continuous_servo[3].throttle = -rightstick
             print('rightstick')
         if  abs(rightstick) < .05:
               kit.continuous_servo[1].throttle = 0.05
+              kit.continuous_servo[3].throttle = 0.05
 
             
         
