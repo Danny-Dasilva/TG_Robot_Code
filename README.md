@@ -21,7 +21,7 @@ Google coral Robot Code with the adafruit servokit library
  
  `python3 pygame.py`
  
- servokit test
+ Plug in a motor or servo on pin 1 to test the servokit library
  
  `sudo python3 simple_test.py`
  
@@ -100,3 +100,13 @@ Empty    - Not currently mapped anywhere
 
 
 ```
+
+## Troubleshooting
+
+ This library assumes you are mounting on the 0x70 i2c bus
+ 
+ If you are getting an i2c device not found at 70 error solder i2c A5 and A4
+ 
+ Otherwise remove the address parameter in the line below 
+ 
+ `kit = ServoKit(channels=16, address=112)`
