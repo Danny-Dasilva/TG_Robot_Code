@@ -19,11 +19,6 @@ pygame.init()
 
 
 
-# Drivetrain Motors
-motor_1 = 0
-motor_2 = 0
-motor_3 = 0
-motor_4 = 0
 
 # Arm Motors
 arm_1 = 0
@@ -31,6 +26,8 @@ arm_2 = 0
 
 
 
+
+# Servos
 servo_5 = 0
 servo_6 = 0
 
@@ -77,8 +74,27 @@ while True:
         #if event.type == pygame.QUIT:
             #done = True
         if joystick_count != 0:
-            leftstick = gamepad.get_axis(1)
-            rightstick = gamepad.get_axis(3)
+            #axis 1 in this case controls forwards backards and 2 controls turning
+            r = Math.hypot(my_joystick.get_axis(1), my_joystick.get_axis(2))
+            robotAngle = Math.atan2(my_joystick.get_axis(2), my_joystick.get_axis(1)) - Math.pi / 4
+            # below controls strafe
+            rightX = my_joystick.get_axis(0)
+            v1 = r * Math.cos(robotAngle) + rightX
+            v2 = r * Math.sin(robotAngle) - rightX
+            v3 = r * Math.sin(robotAngle) + rightX
+            v4 = r * Math.cos(robotAngle) - rightX
+            
+            
+            kit.continuous_servo[0].throttle = v1  # back right
+            kit.continuous_servo[1].throttle = v2  # front left
+            kit.continuous_servo[2].throttle = v3  # back left
+            kit.continuous_servo[3].throttle = v4  # front right
+
+            # motor_1  back right
+            # motor_2  front left
+            # motor_3  back left
+            # motor_4  front right
+
 
 
 
@@ -108,6 +124,11 @@ while True:
             RB = 0
             LT = 0
             RT = 0
+
+            v1 = 0
+            v2 = 0
+            v3 = 0
+            v4 = 0
 
 
 
@@ -166,21 +187,6 @@ while True:
 
 
 
-        # Joystick Val
-        if  abs(leftstick) > .05:
-            kit.continuous_servo[0].throttle = leftstick
-            kit.continuous_servo[2].throttle = leftstick
-            print('leftstick')
-        if  abs(leftstick) < .05:
-            kit.continuous_servo[0].throttle = 0.05
-            kit.continuous_servo[2].throttle = 0.05
-        if  abs(rightstick) > .05:
-            kit.continuous_servo[1].throttle = -rightstick
-            kit.continuous_servo[3].throttle = -rightstick
-            print('rightstick')
-        if  abs(rightstick) < .05:
-              kit.continuous_servo[1].throttle = 0.05
-              kit.continuous_servo[3].throttle = 0.05
 
             
         
