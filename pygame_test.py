@@ -40,6 +40,7 @@ while True:
 
             
         else:
+            print('no joysticks')
            
 
 
