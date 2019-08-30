@@ -3,6 +3,11 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
+import os
+
+os.environ["SDL_VIDEODRIVER"] = "dummy"
+
+
 
 pygame.init()
 
@@ -19,9 +24,17 @@ else:
 
 
 while True:
-
+    
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
-        pygame.event.get()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+        if joystick_count != 0:
+            print('joystick not 0')
+    
+        else:
+            print('666')
+    
        
         
 
