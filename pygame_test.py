@@ -3,6 +3,7 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
+from time import sleep
 import os
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
@@ -67,6 +68,7 @@ while True:
         print('leftstick', leftstick)
     if  abs(rightstick) > .05:
         print('rightstick', rightstick)
+    sleep(.01)
 
 
 
