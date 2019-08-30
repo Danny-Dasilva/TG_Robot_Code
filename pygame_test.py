@@ -21,44 +21,19 @@ else:
     print('init')
 
 
-# while True:
-
-#     for event in pygame.event.get():
-#             if event.type == pygame.QUIT:
-#                 done = True
-         
-#             if joystick_count != 0:
-
-
-#                 val = gamepad.get_button(0)
-#                 val_2 = gamepad.get_button(1)
-                
-
-
-
-
-
-                
-#             else:
-#                 print('no joysticks')
-            
-
-
-
-
-
-#             #  Arm motor
-#             if val == 1:
-                
-#                 print("armA_forward active")
-#             elif val_2 == 1:
-#                 print("armA_back")
-#             else:
-#                 print('no val')
-            
-
-
-        
+while True:
+    
+    # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+        if joystick_count != 0:
+            print('joystick not 0')
+    
+        else:
+            print('666')
+    
+       
         
 
 
