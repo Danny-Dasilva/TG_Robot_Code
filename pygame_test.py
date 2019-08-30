@@ -38,9 +38,10 @@ while True:
     if joystick_count != 0:
         leftstick = gamepad.get_axis(1)
         rightstick = gamepad.get_axis(3)
-        A = gamepad.get_button(0)
-        B = gamepad.get_button(1)
-        X = gamepad.get_button(2)
+        
+        A = gamepad.get_button(1)
+        B = gamepad.get_button(2)
+        X = gamepad.get_button(0)
         Y = gamepad.get_button(3)
         LB = gamepad.get_button(4)
         RB = gamepad.get_button(5)
