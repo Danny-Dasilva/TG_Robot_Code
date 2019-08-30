@@ -6,8 +6,6 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
-# Import the PCA9685 module.
-from adafruit_servokit import ServoKit
 
 pygame.init()
 
