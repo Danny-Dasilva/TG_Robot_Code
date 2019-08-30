@@ -54,7 +54,6 @@ Tank Drive
               Empty -> 14  
               Empty -> 15  
 
-Right Drivetrain A  - Ground
 Drivetrain - Left strick and Right stick control respective Left and Right sides
 Arm 1      - Motor mapped to Joystick buttons, LB to go forward RB to go back
 Arm 2      - Motor mapped to Joystick buttons, LT to go forward RT to go back
@@ -91,7 +90,6 @@ Mecanum Drive
               Empty -> 14  
               Empty -> 15  
 
-Right Drivetrain A  - Ground
 Drive    - Motor location for each Mecanum wheel. Left stick controls forward, back 
            and strafe. Right stick controls turning
 Arm 1    - Motor mapped to Joystick buttons, LB to go forward RB to go back
