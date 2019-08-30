@@ -56,7 +56,7 @@ servo_6 = 0
 
 # Configure min and max servo pulse lengths
 aservo_min = 0  
-aservo_max = 180
+aservo_max = 360
 
 
 bservo_min = 124  
@@ -128,13 +128,13 @@ while True:
 
         # one servo
         if LAservo == 1:
-            servo_5 = servo_5 + .1
+            servo_5 = servo_5 + .2
             if servo_5 > aservo_max:
                 servo_5 = aservo_max
             kit.servo[6].angle = servo_5
             print("LAservo active")
         elif RAservo == 1:
-            servo_5 = servo_5 - .1
+            servo_5 = servo_5 - .2
             if servo_5 < aservo_min:
                 servo_5 = aservo_min
             kit.servo[6].angle = servo_5
