@@ -59,9 +59,6 @@ aservo_min = 0
 aservo_max = 360
 
 
-bservo_min = 124  
-bservo_max = 494
-
 
 joystick_count = pygame.joystick.get_count()
 if joystick_count == 0:
@@ -83,62 +80,92 @@ while True:
             leftstick = gamepad.get_axis(1)
             rightstick = gamepad.get_axis(3)
 
-            LAservo = gamepad.get_button(0)
-            RAservo = gamepad.get_button(1)
-            LBLservo = gamepad.get_button(2)
-            LBservo = gamepad.get_button(3)
+
+            leftstick = gamepad.get_axis(1)
+            rightstick = gamepad.get_axis(3)
 
 
-            armA_forward = gamepad.get_button(4)
-            armA_back = gamepad.get_button(5)
-            armB_forward = gamepad.get_button(6)
-            armB_back = gamepad.get_button(7)
+            A = gamepad.get_button(0)
+            B = gamepad.get_button(1)
+            X = gamepad.get_button(2)
+            Y = gamepad.get_button(3)
+
+
+            LB = gamepad.get_button(4)
+            RB = gamepad.get_button(5)
+            LT = gamepad.get_button(6)
+            RT = gamepad.get_button(7)
 
 
 
 
             
         else:
-            LAservo = 0
-            RAservo = 0
-            LBLservo = 0
-            LBservo = 0
+            A = 0
+            B = 0
+            X = 0
+            Y = 0
 
 
-            armA_forward = 0
-            armA_back = 0
-            armB_forward = 0
-            armB_back = 0
+            LB = 0
+            RB = 0
+            LT = 0
+            RT = 0
 
 
 
 
 
-        #  Arm motor
-        if armA_forward == 1:
+        #  Arm A motor
+        if LB == 1:
             kit.continuous_servo[4].throttle = 1
-            print("armA_forward active")
-        elif armA_back == 1:
+            print("armA_forward")
+        elif RB == 1:
             kit.continuous_servo[4].throttle = -1
             print("armA_back")
         else:
             kit.continuous_servo[4].throttle = 0.05
+
+        #  Arm B motor
+        if LB == 1:
+            kit.continuous_servo[4].throttle = 1
+            print("armB_forward")
+        elif RB == 1:
+            kit.continuous_servo[4].throttle = -1
+            print("armB_back")
+        else:
+            kit.continuous_servo[4].throttle = 0.05
+        
         
 
 
-        # one servo
-        if LAservo == 1:
+        # Servo 1
+        if A == 1:
             servo_5 = servo_5 + .2
             if servo_5 > aservo_max:
                 servo_5 = aservo_max
             kit.servo[6].angle = servo_5
             print("LAservo active")
-        elif RAservo == 1:
+        elif B == 1:
             servo_5 = servo_5 - .2
             if servo_5 < aservo_min:
                 servo_5 = aservo_min
             kit.servo[6].angle = servo_5
             print("RAservo active")
+        
+         # Servo 2
+        if X == 1:
+            servo_5 = servo_5 + .2
+            if servo_5 > aservo_max:
+                servo_5 = aservo_max
+            kit.servo[5].angle = servo_5
+            print("LBservo active")
+        elif Y == 1:
+            servo_5 = servo_5 - .2
+            if servo_5 < aservo_min:
+                servo_5 = aservo_min
+            kit.servo[5].angle = servo_5
+            print("RBservo active")
 
 
 
