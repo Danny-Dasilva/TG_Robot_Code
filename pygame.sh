@@ -11,7 +11,7 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   python3 setup.py build
   sudo python3 setup.py install
   cd ..
-  rm -rf pygame
+  sudo rm -rf pygame
   echo "Installing Servokit"
   sudo pip3 install adafruit-circuitpython-servokit
   echo "Adding Libgiod Bindings"
