@@ -10,6 +10,8 @@ import pygame
 
 from adafruit_servokit import ServoKit
 import os
+sleep(1)
+
 # This is set because normally pygame uses this video drive but the google coral does not support it
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
