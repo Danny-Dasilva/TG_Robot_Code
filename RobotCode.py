@@ -17,7 +17,7 @@ sleep(1)
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # setting 16 channels for hat as well as i2c address to 70
-kit = ServoKit(channels=16, address=112)
+kit = ServoKit(channels=16, address=96)
 pygame.init()
 
 
