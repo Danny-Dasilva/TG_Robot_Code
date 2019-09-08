@@ -10,7 +10,8 @@ import pygame
 
 from adafruit_servokit import ServoKit
 import os
-sleep(1)
+sleep(3)
+
 
 # This is set because normally pygame uses this video drive but the google coral does not support it
 
@@ -18,8 +19,8 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # setting 16 channels for hat as well as i2c address to 70
 kit = ServoKit(channels=16, address=96)
-pygame.init()
 
+pygame.init()
 
 # Drivetrain Motors
 motor_1 = 0
@@ -60,7 +61,7 @@ servo_6 = 0
 aservo_min = 0  
 aservo_max = 360
 
-
+print("hello")
 
 joystick_count = pygame.joystick.get_count()
 if joystick_count == 0:
@@ -68,32 +69,30 @@ if joystick_count == 0:
     print("Error, I didn't find any joysticks.")
 else:
     # Use joystick #0 and initialize it
+    print("hello")
     gamepad = pygame.joystick.Joystick(0)
+    
     gamepad.init()
 
 
 while True:
-
+        sleep(.01)
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
         pygame.event.get()
         #if event.type == pygame.QUIT:
             #done = True
         if joystick_count != 0:
             leftstick = gamepad.get_axis(1)
-            rightstick = gamepad.get_axis(3)
-
-
-
-            A = gamepad.get_button(1)
-            B = gamepad.get_button(2)
-            X = gamepad.get_button(0)
+            rightstick = gamepad.get_axis(4)
+            
+            B = gamepad.get_button(1)
+            X = gamepad.get_button(2)
+            A = gamepad.get_button(0)
             Y = gamepad.get_button(3)
-
-
             LB = gamepad.get_button(4)
             RB = gamepad.get_button(5)
-            LT = gamepad.get_button(6)
-            RT = gamepad.get_button(7)
+            LT = gamepad.get_axis(2)
+            RT = gamepad.get_axis(5)
 
 
 
@@ -114,7 +113,7 @@ while True:
 
 
 
-
+        
         #  Arm A motor
         if LB == 1:
             kit.continuous_servo[4].throttle = 1
@@ -126,10 +125,10 @@ while True:
             kit.continuous_servo[4].throttle = 0.05
 
         #  Arm B motor
-        if LT == 1:
+        if LT > .75:
             kit.continuous_servo[5].throttle = 1
             print("armB_forward")
-        elif RT == 1:
+        elif RT > .75:
             kit.continuous_servo[5].throttle = -1
             print("armB_back")
         else:
