@@ -38,6 +38,7 @@ servo_5 = 0
 servo_6 = 0
 
 
+deadzone = 0.05
 
 #Pinout map 
 '''
@@ -93,6 +94,9 @@ while True:
             RB = gamepad.get_button(5)
             LT = gamepad.get_axis(2)
             RT = gamepad.get_axis(5)
+            Home = gamepad.get_button(8)
+            Start = gamepad.get_button(7)
+            Back = gamepad.get_button(6)
 
 
 
@@ -166,22 +170,45 @@ while True:
             print("RBservo active")
 
 
+        # Deadzone Test
+        if Start == Y == Home == 1:
+            
+            while Back != 1:
+                pygame.event.get()
+                Back = gamepad.get_button(6)
+                B = gamepad.get_button(1)
+                X = gamepad.get_button(2)
+                sleep(.03)
+                
+                if B == 1:
+                    deadzone = deadzone + .01
+                if X == 1:
+                    deadzone = deadzone - .01
+                kit.continuous_servo[1].throttle = deadzone
+                kit.continuous_servo[3].throttle = deadzone
+                kit.continuous_servo[0].throttle = deadzone
+                kit.continuous_servo[2].throttle = deadzone
 
-        # Joystick Val
+
+
+
+           # Joystick Val
         if  abs(leftstick) > .05:
             kit.continuous_servo[0].throttle = leftstick
             kit.continuous_servo[2].throttle = leftstick
             print('leftstick')
         if  abs(leftstick) < .05:
-            kit.continuous_servo[0].throttle = 0.05
-            kit.continuous_servo[2].throttle = 0.05
+            kit.continuous_servo[0].throttle = deadzone
+            kit.continuous_servo[2].throttle = deadzone
         if  abs(rightstick) > .05:
             kit.continuous_servo[1].throttle = -rightstick
             kit.continuous_servo[3].throttle = -rightstick
             print('rightstick')
         if  abs(rightstick) < .05:
-              kit.continuous_servo[1].throttle = 0.05
-              kit.continuous_servo[3].throttle = 0.05
+              kit.continuous_servo[1].throttle = deadzone
+              kit.continuous_servo[3].throttle = deadzone
+
+            
 
             
         
