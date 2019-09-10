@@ -7,7 +7,7 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
-
+import csv
 from adafruit_servokit import ServoKit
 import os
 sleep(3)
@@ -17,7 +17,7 @@ sleep(3)
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
-# setting 16 channels for hat as well as i2c address to 70
+# setting 16 channels for hat as well as i2c address to 60
 kit = ServoKit(channels=16, address=96)
 
 pygame.init()
@@ -38,7 +38,6 @@ servo_5 = 0
 servo_6 = 0
 
 
-deadzone = 0.05
 
 #Pinout map 
 '''
@@ -50,7 +49,7 @@ deadzone = 0.05
 4 arm motor 1
 5 arm motor 2
 6 servo 1
-7 servo 2
+7 servo 2test
 
 '''
 
@@ -66,7 +65,6 @@ with open('var.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
         deadzone = (float(row["Deadzone"]))
-        print(type(deadzone))
 
 
 joystick_count = pygame.joystick.get_count()
@@ -144,23 +142,7 @@ while True:
         
         
 
-if Start == Y == Home == 1:
-            
-            while Back != 1:
-                pygame.event.get()
-                Back = gamepad.get_button(6)
-                B = gamepad.get_button(1)
-                X = gamepad.get_button(2)
-                sleep(.03)
-                
-                if B == 1:
-                    deadzone = deadzone + .01
-                if X == 1:
-                    deadzone = deadzone - .01
-                kit.continuous_servo[1].throttle = deadzone
-                kit.continuous_servo[3].throttle = deadzone
-                kit.continuous_servo[0].throttle = deadzone
-                kit.continuous_servo[2].throttle = deadzone
+
         # Servo 1
         if A == 1:
             servo_5 = servo_5 + .2
@@ -198,6 +180,7 @@ if Start == Y == Home == 1:
                 Back = gamepad.get_button(6)
                 B = gamepad.get_button(1)
                 X = gamepad.get_button(2)
+                print(Back)
                 sleep(.03)
                 
                 if B == 1:
@@ -213,8 +196,8 @@ if Start == Y == Home == 1:
                         fieldnames = ['Deadzone']
                         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                         writer.writeheader()
-                        writer
-
+                        writer.writerow({'Deadzone': deadzone})
+                    break
 
 
 
