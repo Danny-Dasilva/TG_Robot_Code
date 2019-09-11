@@ -128,7 +128,7 @@ while True:
             kit.continuous_servo[4].throttle = -1
             print("armA_back")
         else:
-            kit.continuous_servo[4].throttle = 0.05
+            kit.continuous_servo[4].throttle = deadzone
 
         #  Arm B motor
         if LT > .75:
@@ -138,7 +138,7 @@ while True:
             kit.continuous_servo[5].throttle = -1
             print("armB_back")
         else:
-            kit.continuous_servo[5].throttle = 0.05
+            kit.continuous_servo[5].throttle = deadzone
         
         
 

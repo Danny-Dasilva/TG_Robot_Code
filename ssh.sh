@@ -1,6 +1,5 @@
 SSSH=/etc/ssh/sshd_config 
 
-
   
 if grep -q "PasswordAuthentication no" "$SSSH";
 then
