@@ -103,10 +103,10 @@ Empty    - Not currently mapped anywhere
 
 ## Troubleshooting
 
- This library assumes you are mounting on the 0x70 i2c bus
+ This library assumes you are mounting on the 0x60 i2c bus
  
- If you are getting an i2c device not found at 70 error solder i2c A5 and A4
+ If you are getting an i2c device not found at 60 error solder i2c A5 
  
  Otherwise remove the address parameter in the line below 
  
- `kit = ServoKit(channels=16, address=112)`
+ `kit = ServoKit(channels=16, address=96)`
