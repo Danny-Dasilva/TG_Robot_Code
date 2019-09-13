@@ -46,3 +46,6 @@ class Brooklyn:
             dir = 0
         val = abs(val)
         self.send_cmd(0x00, motor, [val, dir])
+    def close(self):
+        self.ser.write(bytearray([255,255,255]))
+        print("UH")
