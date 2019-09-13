@@ -32,7 +32,7 @@ Google coral Robot Code with the adafruit servokit library
  
 
 Map `below` is for the Adafruit PCA_9685 Hat
-This is assuming your Logitech controller is in `D` mode
+This is assuming your Logitech controller is in `X` mode
 
 ```
 Tank Drive
@@ -68,7 +68,7 @@ Empty      - Not currently mapped anywhere
  
 
 Map `below` is for the Adafruit PCA_9685 Hat
-This is assuming your Logitech controller is in `D` mode
+This is assuming your Logitech controller is in `X` mode
 
 ```
 Mecanum Drive
