@@ -83,6 +83,12 @@ while True:
     if not controller.hasController():
     # handle disconnect
         print('reconnect')
+        kit.continuous_servo[0].throttle = deadzone
+        kit.continuous_servo[1].throttle = deadzone
+        kit.continuous_servo[2].throttle = deadzone
+        kit.continuous_servo[3].throttle = deadzone
+        kit.continuous_servo[4].throttle = deadzone
+        kit.continuous_servo[5].throttle = deadzone
     else:
         sleep(.01)
         gamepad = pygame.joystick.Joystick(0)
