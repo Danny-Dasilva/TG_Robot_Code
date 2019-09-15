@@ -4,31 +4,23 @@
 
 
 from __future__ import division
-from app.controller import ControllerInput
+import time
 from time import sleep
 import pygame
 import csv
-import sys
 from adafruit_servokit import ServoKit
 import os
-path = os.path.dirname(os.path.abspath(__file__))
-sleep(1)
+sleep(3)
+
+
+# This is set because normally pygame uses this video drive but the google coral does not support it
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
-
-
-controller = ControllerInput()
-
-
-
-
-
-
 
 # setting 16 channels for hat as well as i2c address to 60
 kit = ServoKit(channels=16, address=96)
 
-
+pygame.init()
 
 # Drivetrain Motors
 motor_1 = 0
@@ -69,47 +61,59 @@ aservo_max = 360
 
 
 #sets deadzone
-with open(path +'/var.csv', mode='r') as csv_file:
+with open('var.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
         deadzone = (float(row["Deadzone"]))
 
-
-
-
+joystick_count = pygame.joystick.get_count()
+if joystick_count == 0:
+    # No joysticks!
+    print("Error, I didn't find any joysticks.")
+else:
+    # Use joystick #0 and initialize it
+    gamepad = pygame.joystick.Joystick(0)
+    
+    gamepad.init()
 
 
 while True:
-    if not controller.hasController():
-    # handle disconnect
-        print('reconnect')
-    else:
         sleep(.01)
-        gamepad = pygame.joystick.Joystick(0)
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
         pygame.event.get()
-        #print(gamepad.get_name())
-
-        leftstick = gamepad.get_axis(1)
-        rightstick = gamepad.get_axis(4)
-        
-        B = gamepad.get_button(1)
-        X = gamepad.get_button(2)
-        A = gamepad.get_button(0)
-        Y = gamepad.get_button(3)
-        LB = gamepad.get_button(4)
-        RB = gamepad.get_button(5)
-        LT = gamepad.get_axis(2)
-        RT = gamepad.get_axis(5)
-        Home = gamepad.get_button(8)
-        Start = gamepad.get_button(7)
-        Back = gamepad.get_button(6)
+        #if event.type == pygame.QUIT:
+            #done = True
+        if joystick_count != 0:
+            leftstick = gamepad.get_axis(1)
+            rightstick = gamepad.get_axis(4)
+            
+            B = gamepad.get_button(1)
+            X = gamepad.get_button(2)
+            A = gamepad.get_button(0)
+            Y = gamepad.get_button(3)
+            LB = gamepad.get_button(4)
+            RB = gamepad.get_button(5)
+            LT = gamepad.get_axis(2)
+            RT = gamepad.get_axis(5)
+            Home = gamepad.get_button(8)
+            Start = gamepad.get_button(7)
+            Back = gamepad.get_button(6)
 
 
 
 
             
-     
+        else:
+            A = 0
+            B = 0
+            X = 0
+            Y = 0
+
+
+            LB = 0
+            RB = 0
+            LT = 0
+            RT = 0
 
 
 
@@ -152,7 +156,7 @@ while True:
             kit.servo[6].angle = servo_5
             print("RAservo active")
         
-        # Servo 2
+         # Servo 2
         if X == 1:
             servo_5 = servo_5 + .2
             if servo_5 > aservo_max:
@@ -187,7 +191,7 @@ while True:
                 kit.continuous_servo[0].throttle = deadzone
                 kit.continuous_servo[2].throttle = deadzone
                 if Back == 1:
-                    with open(path + '/var.csv', mode='w') as csv_file:
+                    with open('var.csv', mode='w') as csv_file:
                         fieldnames = ['Deadzone']
                         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                         writer.writeheader()
@@ -196,11 +200,10 @@ while True:
 
 
 
-        # Joystick Val
+           # Joystick Val
         if  abs(leftstick) > .05:
             kit.continuous_servo[0].throttle = leftstick
             kit.continuous_servo[2].throttle = leftstick
-            print(leftstick)
             print('leftstick')
         if  abs(leftstick) < .05:
             kit.continuous_servo[0].throttle = deadzone
@@ -210,14 +213,14 @@ while True:
             kit.continuous_servo[3].throttle = -rightstick
             print('rightstick')
         if  abs(rightstick) < .05:
-            kit.continuous_servo[1].throttle = deadzone
-            kit.continuous_servo[3].throttle = deadzone
+              kit.continuous_servo[1].throttle = deadzone
+              kit.continuous_servo[3].throttle = deadzone
 
-        
+            
 
+            
         
-    
-    
+        
 
 
 
