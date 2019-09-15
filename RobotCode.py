@@ -11,40 +11,19 @@ import csv
 import sys
 from adafruit_servokit import ServoKit
 import os
+# set path to current dir for csv file
 path = os.path.dirname(os.path.abspath(__file__))
 sleep(1)
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
+#controller Disconnect 
 controller = ControllerInput()
-
-
-
-
-
 
 
 # setting 16 channels for hat as well as i2c address to 60
 kit = ServoKit(channels=16, address=96)
-
-
-
-# Drivetrain Motors
-motor_1 = 0
-motor_2 = 0
-motor_3 = 0
-motor_4 = 0
-
-# Arm Motors
-arm_1 = 0
-arm_2 = 0
-
-
-
-servo_5 = 0
-servo_6 = 0
-
 
 
 #Pinout map 
@@ -61,9 +40,7 @@ servo_6 = 0
 
 '''
 
-
-
-# Configure min and max servo pulse lengths
+# Configure min and max servo angle
 aservo_min = 0  
 aservo_max = 360
 
@@ -73,11 +50,6 @@ with open(path +'/var.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
         deadzone = (float(row["Deadzone"]))
-
-
-
-
-
 
 while True:
     if not controller.hasController():
@@ -90,11 +62,11 @@ while True:
         kit.continuous_servo[4].throttle = deadzone
         kit.continuous_servo[5].throttle = deadzone
     else:
+        #print(gamepad.get_name())
         sleep(.01)
         gamepad = pygame.joystick.Joystick(0)
-    # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
         pygame.event.get()
-        #print(gamepad.get_name())
+     
 
         leftstick = gamepad.get_axis(1)
         rightstick = gamepad.get_axis(4)
@@ -142,7 +114,6 @@ while True:
             kit.continuous_servo[5].throttle = deadzone
         
         
-
 
         # Servo 1
         if A == 1:
