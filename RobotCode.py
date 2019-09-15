@@ -8,8 +8,10 @@ import time
 from time import sleep
 import pygame
 import csv
+import sys
 from adafruit_servokit import ServoKit
 import os
+path = os.path.dirname(os.path.abspath(__file__))
 sleep(1)
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
@@ -98,7 +100,7 @@ aservo_max = 360
 
 
 #sets deadzone
-with open('var.csv', mode='r') as csv_file:
+with open(path +'/var.csv', mode='r') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     for row in csv_reader:
         deadzone = (float(row["Deadzone"]))
@@ -116,7 +118,7 @@ while True:
         sleep(.01)
     # ALL EVENT PROCESSING SHOULD GO BELOW THIS COMMENT
         pygame.event.get()
-        print(gamepad.get_name())
+        #print(gamepad.get_name())
 
         leftstick = gamepad.get_axis(1)
         rightstick = gamepad.get_axis(4)
@@ -215,7 +217,7 @@ while True:
                 kit.continuous_servo[0].throttle = deadzone
                 kit.continuous_servo[2].throttle = deadzone
                 if Back == 1:
-                    with open('var.csv', mode='w') as csv_file:
+                    with open(path + '/var.csv', mode='w') as csv_file:
                         fieldnames = ['Deadzone']
                         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                         writer.writeheader()
