@@ -39,7 +39,7 @@ kit = ServoKit(channels=16, address=96)
 7 servo 2test
 
 '''
-
+servo_5 = 0
 # Configure min and max servo angle
 aservo_min = 0  
 aservo_max = 360

@@ -14,7 +14,7 @@ class ControllerInput():
     self.Recon_timeout = 7
 
   def hasController(self):
-    now = time.time()1
+    now = time.time()
     if now - self.lastActive > Inactivity and now - self.lastTime > self.Recon_timeout:
       self.lastTime = now
       pygame.joystick.quit()
