@@ -11,7 +11,7 @@ import pygame
 from adafruit_servokit import ServoKit
 import os
 # This is set because normally pygame uses this video drive but the google coral does not support it
-
+#add Devin's code for mecanums and fix inouts
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 # setting 16 channels for hat as well as i2c address to 70
