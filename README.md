@@ -5,7 +5,7 @@ Google coral Robot Code with the adafruit servokit library
 `git clone https://github.com/Danny-Dasilva/TG-Coral-Robot_Code.git`
  
  path to folder 
- `cd TG-Coral-Robot_Code.git`
+ `cd TG-Coral-Robot_Code`
  
  if you need to install pygame as well as the servokit library
  
