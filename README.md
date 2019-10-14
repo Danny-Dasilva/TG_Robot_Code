@@ -15,7 +15,14 @@ Google coral Robot Code with the adafruit servokit library
  
  `sh install.sh`
  
+
+## Autoboot code
+
+`sh auto.sh`
+
+This will put the `Robot code.py` path in your crontab which will run on boot
  ## Examples
+In `/test/`
  
  controller map test
  
