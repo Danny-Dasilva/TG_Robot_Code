@@ -122,15 +122,18 @@ while True:
         
         # Servo 2
         if X == 1:
-            servo = servo + .2
-            if servo > servo_max:
-                servo = servo_max
+
+            servo = min(servo + .2, servo_max)
+
+
             hat.servo(7, servo)
             print("LBservo active")
+
+        
         elif Y == 1:
-            servo = servo - .2
-            if servo < servo_min:
-                servo = servo_min
+
+            servo = max(servo - .2, servo_min)
+            
             hat.servo(7, servo)
             print("RBservo active")
 

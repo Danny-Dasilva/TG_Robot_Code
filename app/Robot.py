@@ -36,7 +36,8 @@ def control_loop():
             deadzone = deadzone + .01
         if X == 1:
             deadzone = deadzone - .01
-        for i in range(4):
+
+        for i in range(16):
             hat.motor(i, deadzone)
       
 
@@ -80,7 +81,7 @@ class ControllerInput():
 
     return pygame.joystick.get_count() > 0
     
-    
+
 class Py_Hat():
     """
     Py-Hat class for the Adafruit_PCA1986 hat
