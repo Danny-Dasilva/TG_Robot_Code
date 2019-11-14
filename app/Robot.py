@@ -6,7 +6,7 @@ import csv
 from adafruit_servokit import ServoKit
 
 
-Inactivity = 7
+
 path = os.path.dirname(os.path.abspath(__file__))
 def Deadzone():
 
@@ -28,7 +28,7 @@ def control_loop():
         Back = gamepad.get_button(6)
         B = gamepad.get_button(1)
         X = gamepad.get_button(2)
-        
+
         print(Back)
         sleep(.03)
         
@@ -57,10 +57,11 @@ class ControllerInput():
     self.lastActive = 0
     self.gamepad = 0
     self.Recon_timeout = 7
+    self.Inactivity = 7
 
   def hasController(self):
     now = time.time()
-    if now - self.lastActive > Inactivity and now - self.lastTime > self.Recon_timeout:
+    if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
       self.lastTime = now
       pygame.joystick.quit()
       pygame.joystick.init()
