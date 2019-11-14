@@ -81,23 +81,68 @@ class ControllerInput():
     return pygame.joystick.get_count() > 0
     
 class Py_Hat():
+    """
+    Py-Hat class for the Adafruit_PCA1986 hat
+
+    ...
+
+
+    Methods
+    -------
+    says(sound=None)
+        Prints the animals name and what sound it makes
+    """
     def __init__(self):
-        """Py-Hat class for the Adafruit_PCA1986 HAT"""
+        """
+        Parameters
+        ----------
+        name : str
+            The name of the animal
+        sound : str
+            The sound the animal makes
+        num_legs : int, optional
+            The number of legs the animal (default is 4)
+        """
+        
+        
         channels = 16
         address = 96
         kit = ServoKit(channels=channels, address=address)
         self.kit = kit
+        
     def motor(self, pin, value):
-        """ Adafruit Servokit implementation of a motor
+        """Adafruit Servokit implementation of a motor
 
         This function takes two arguments a pin and a value ranging from 1 to -1. 
         The pin number corresponds to the one on the pi-hat
+
+        Parameters
+        ----------
+        sound : str, optional
+            The sound the animal makes (default is None)
+
+        Raises
+        ------
+        NotImplementedError
+            If no sound is set for the animal or passed in as a
+            parameter.
         """
         self.kit.continuous_servo[pin].throttle = value
     def servo(self, pin, angle):
-        """ Adafruit Servokit implementation of a servo
+        """Adafruit Servokit implementation of a motor
 
         This function takes two arguments a pin and a angle. 
         The pin number corresponds to the one on the pi-hat
+
+        Parameters
+        ----------
+        sound : str, optional
+            The sound the animal makes (default is None)
+
+        Raises
+        ------
+        NotImplementedError
+            If no sound is set for the animal or passed in as a
+            parameter.
         """
         self.kit.servo[pin].angle = angle
