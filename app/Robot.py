@@ -3,10 +3,11 @@ import time
 import os
 from time import sleep
 import csv
-Inactivity = 5
-path = os.path.dirname(os.path.abspath(__file__))
 from adafruit_servokit import ServoKit
-kit = ServoKit(channels=16, address=96)
+
+
+Inactivity = 7
+path = os.path.dirname(os.path.abspath(__file__))
 def Deadzone():
 
     with open(path +'/var.csv', mode='r') as csv_file:
@@ -77,11 +78,12 @@ class ControllerInput():
     return pygame.joystick.get_count() > 0
     
 class Py_Hat():
-    def __init__():
+    def __init__(self):
         channels = 16
         address = 96
-        self.kit = ServoKit(channels=channels, address=address)
-    def motor(pin, value):
+        kit = ServoKit(channels=channels, address=address)
+        self.kit = kit
+    def motor(self, pin, value):
         self.kit.continuous_servo[pin].throttle = value
-    def servo(pin, angle):
+    def servo(self, pin, angle):
         self.kit.servo[pin].angle = angle
