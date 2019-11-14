@@ -4,16 +4,17 @@
 
 
 from __future__ import division
-from app.controller import ControllerInput
+from app.controller import ControllerInput, Deadzone, control_loop
 from time import sleep
 import pygame
-import csv
+
 import sys
 from adafruit_servokit import ServoKit
 import os
 # set path to current dir for csv file
-path = os.path.dirname(os.path.abspath(__file__))
+
 sleep(1)
+
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
@@ -39,19 +40,19 @@ kit = ServoKit(channels=16, address=96)
 7 servo 2test
 
 '''
+
+
 servo_5 = 0
 # Configure min and max servo angle
-aservo_min = 0  
-aservo_max = 360
+servo_min = 0  
+servo_max = 360
 
 
-#sets deadzone
-with open(path +'/var.csv', mode='r') as csv_file:
-    csv_reader = csv.DictReader(csv_file)
-    for row in csv_reader:
-        deadzone = (float(row["Deadzone"]))
+
+deadzone = Deadzone()
 
 while True:
+    
     if not controller.hasController():
     # handle disconnect
         print('reconnect')
@@ -88,10 +89,6 @@ while True:
 
 
 
-
-
-
-
         
         #  Arm A motor
         if LB == 1:
@@ -118,59 +115,36 @@ while True:
         # Servo 1
         if A == 1:
             servo_5 = servo_5 + .2
-            if servo_5 > aservo_max:
-                servo_5 = aservo_max
+            if servo_5 > servo_max:
+                servo_5 = servo_max
             kit.servo[6].angle = servo_5
             print("LAservo active")
         elif B == 1:
             servo_5 = servo_5 - .2
-            if servo_5 < aservo_min:
-                servo_5 = aservo_min
+            if servo_5 < servo_min:
+                servo_5 = servo_min
             kit.servo[6].angle = servo_5
             print("RAservo active")
         
         # Servo 2
         if X == 1:
             servo_5 = servo_5 + .2
-            if servo_5 > aservo_max:
-                servo_5 = aservo_max
+            if servo_5 > servo_max:
+                servo_5 = servo_max
             kit.servo[7].angle = servo_5
             print("LBservo active")
         elif Y == 1:
             servo_5 = servo_5 - .2
-            if servo_5 < aservo_min:
-                servo_5 = aservo_min
+            if servo_5 < servo_min:
+                servo_5 = servo_min
             kit.servo[7].angle = servo_5
             print("RBservo active")
 
 
         # Deadzone Test
         if Start == Y == Home == 1:
-            print("condition")
-            while True:
-                pygame.event.get()
-                Back = gamepad.get_button(6)
-                B = gamepad.get_button(1)
-                X = gamepad.get_button(2)
-                print(Back)
-                sleep(.03)
-                
-                if B == 1:
-                    deadzone = deadzone + .01
-                if X == 1:
-                    deadzone = deadzone - .01
-                kit.continuous_servo[1].throttle = deadzone
-                kit.continuous_servo[3].throttle = deadzone
-                kit.continuous_servo[0].throttle = deadzone
-                kit.continuous_servo[2].throttle = deadzone
-                if Back == 1:
-                    with open(path + '/var.csv', mode='w') as csv_file:
-                        fieldnames = ['Deadzone']
-                        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-                        writer.writeheader()
-                        writer.writerow({'Deadzone': deadzone})
-                    break
-
+            deadzone = control_loop()
+            
 
 
         # Joystick Val
