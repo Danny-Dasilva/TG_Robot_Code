@@ -4,7 +4,7 @@
 
 
 from __future__ import division
-from app.Robot import ControllerInput, Deadzone, control_loop, Py_Hat
+from app.controller import ControllerInput, Deadzone, control_loop
 from time import sleep
 import pygame
 
@@ -24,7 +24,7 @@ controller = ControllerInput()
 
 
 # setting 16 channels for hat as well as i2c address to 60
-hat = Py_Hat()
+kit = ServoKit(channels=16, address=96)
 
 
 #Pinout map 
@@ -56,12 +56,12 @@ while True:
     if not controller.hasController():
     # handle disconnect
         print('reconnect')
-        hat.motor(0, deadzone)
-        hat.motor(1, deadzone)
-        hat.motor(2, deadzone)
-        hat.motor(3, deadzone)
-        hat.motor(4, deadzone)
-       
+        kit.continuous_servo[0].throttle = deadzone
+        kit.continuous_servo[1].throttle = deadzone
+        kit.continuous_servo[2].throttle = deadzone
+        kit.continuous_servo[3].throttle = deadzone
+        kit.continuous_servo[4].throttle = deadzone
+        kit.continuous_servo[5].throttle = deadzone
     else:
         #print(gamepad.get_name())
         sleep(.01)
@@ -92,25 +92,23 @@ while True:
         
         #  Arm A motor
         if LB == 1:
-            hat.motor(4, 1)
-            
+            kit.continuous_servo[4].throttle = 1
             print("armA_forward")
         elif RB == 1:
-            hat.motor(4, -1)
-            
+            kit.continuous_servo[4].throttle = -1
             print("armA_back")
         else:
-            hat.motor(4, deadzone)
+            kit.continuous_servo[4].throttle = deadzone
 
         #  Arm B motor
         if LT > .75:
-            hat.motor(5, 1)
+            kit.continuous_servo[5].throttle = 1
             print("armB_forward")
         elif RT > .75:
-            hat.motor(5, -1)
+            kit.continuous_servo[5].throttle = -1
             print("armB_back")
         else:
-            hat.motor(5, deadzone)
+            kit.continuous_servo[5].throttle = deadzone
         
         
 
@@ -119,13 +117,13 @@ while True:
             servo_5 = servo_5 + .2
             if servo_5 > servo_max:
                 servo_5 = servo_max
-            hat.servo(6, servo_5)
+            kit.servo[6].angle = servo_5
             print("LAservo active")
         elif B == 1:
             servo_5 = servo_5 - .2
             if servo_5 < servo_min:
                 servo_5 = servo_min
-            hat.servo(6, servo_5)
+            kit.servo[6].angle = servo_5
             print("RAservo active")
         
         # Servo 2
@@ -133,13 +131,13 @@ while True:
             servo_5 = servo_5 + .2
             if servo_5 > servo_max:
                 servo_5 = servo_max
-            hat.servo(7, servo_5)
+            kit.servo[7].angle = servo_5
             print("LBservo active")
         elif Y == 1:
             servo_5 = servo_5 - .2
             if servo_5 < servo_min:
                 servo_5 = servo_min
-            hat.servo(7, servo_5)
+            kit.servo[7].angle = servo_5
             print("RBservo active")
 
 
@@ -151,21 +149,19 @@ while True:
 
         # Joystick Val
         if  abs(leftstick) > .05:
-            hat.motor(0, leftstick)
-            hat.motor(2, leftstick)
-           
+            kit.continuous_servo[0].throttle = leftstick
+            kit.continuous_servo[2].throttle = leftstick
             print('leftstick')
         if  abs(leftstick) < .05:
-            hat.motor(0, deadzone)
-            hat.motor(2, deadzone)
-           
+            kit.continuous_servo[0].throttle = deadzone
+            kit.continuous_servo[2].throttle = deadzone
         if  abs(rightstick) > .05:
-            hat.motor(1, -rightstick)
-            hat.motor(3,  -rightstick)
+            kit.continuous_servo[1].throttle = -rightstick
+            kit.continuous_servo[3].throttle = -rightstick
             print('rightstick')
         if  abs(rightstick) < .05:
-            hat.motor(1, deadzone)
-            hat.motor(3,  deadzone)
+            kit.continuous_servo[1].throttle = deadzone
+            kit.continuous_servo[3].throttle = deadzone
 
         
 

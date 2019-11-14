@@ -1,30 +1,25 @@
-# Tank drive code for the google coral
+# Robot Code for Tech Garage
 # Author: Danny Dasilva
 # License: Public Domain 
 
 
 from __future__ import division
-from app.controller import ControllerInput, Deadzone, control_loop
+from app.Robot import ControllerInput, Deadzone, control_loop, Py_Hat
 from time import sleep
 import pygame
-
-import sys
-from adafruit_servokit import ServoKit
 import os
-# set path to current dir for csv file
-
 sleep(1)
 
 
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
-#controller Disconnect 
+#handle controller disconnect
 controller = ControllerInput()
 
 
-# setting 16 channels for hat as well as i2c address to 60
-kit = ServoKit(channels=16, address=96)
+# initialize Pi Hat
+hat = Py_Hat()
 
 
 #Pinout map 
@@ -37,7 +32,7 @@ kit = ServoKit(channels=16, address=96)
 4 arm motor 1
 5 arm motor 2
 6 servo 1
-7 servo 2test
+7 servo 2
 
 '''
 
@@ -56,12 +51,12 @@ while True:
     if not controller.hasController():
     # handle disconnect
         print('reconnect')
-        kit.continuous_servo[0].throttle = deadzone
-        kit.continuous_servo[1].throttle = deadzone
-        kit.continuous_servo[2].throttle = deadzone
-        kit.continuous_servo[3].throttle = deadzone
-        kit.continuous_servo[4].throttle = deadzone
-        kit.continuous_servo[5].throttle = deadzone
+        hat.motor(0, deadzone)
+        hat.motor(1, deadzone)
+        hat.motor(2, deadzone)
+        hat.motor(3, deadzone)
+        hat.motor(4, deadzone)
+       
     else:
         #print(gamepad.get_name())
         sleep(.01)
@@ -92,23 +87,25 @@ while True:
         
         #  Arm A motor
         if LB == 1:
-            kit.continuous_servo[4].throttle = 1
+            hat.motor(4, 1)
+            
             print("armA_forward")
         elif RB == 1:
-            kit.continuous_servo[4].throttle = -1
+            hat.motor(4, -1)
+            
             print("armA_back")
         else:
-            kit.continuous_servo[4].throttle = deadzone
+            hat.motor(4, deadzone)
 
         #  Arm B motor
         if LT > .75:
-            kit.continuous_servo[5].throttle = 1
+            hat.motor(5, 1)
             print("armB_forward")
         elif RT > .75:
-            kit.continuous_servo[5].throttle = -1
+            hat.motor(5, -1)
             print("armB_back")
         else:
-            kit.continuous_servo[5].throttle = deadzone
+            hat.motor(5, deadzone)
         
         
 
@@ -117,13 +114,13 @@ while True:
             servo_5 = servo_5 + .2
             if servo_5 > servo_max:
                 servo_5 = servo_max
-            kit.servo[6].angle = servo_5
+            hat.servo(6, servo_5)
             print("LAservo active")
         elif B == 1:
             servo_5 = servo_5 - .2
             if servo_5 < servo_min:
                 servo_5 = servo_min
-            kit.servo[6].angle = servo_5
+            hat.servo(6, servo_5)
             print("RAservo active")
         
         # Servo 2
@@ -131,13 +128,13 @@ while True:
             servo_5 = servo_5 + .2
             if servo_5 > servo_max:
                 servo_5 = servo_max
-            kit.servo[7].angle = servo_5
+            hat.servo(7, servo_5)
             print("LBservo active")
         elif Y == 1:
             servo_5 = servo_5 - .2
             if servo_5 < servo_min:
                 servo_5 = servo_min
-            kit.servo[7].angle = servo_5
+            hat.servo(7, servo_5)
             print("RBservo active")
 
 
@@ -149,19 +146,21 @@ while True:
 
         # Joystick Val
         if  abs(leftstick) > .05:
-            kit.continuous_servo[0].throttle = leftstick
-            kit.continuous_servo[2].throttle = leftstick
+            hat.motor(0, leftstick)
+            hat.motor(2, leftstick)
+           
             print('leftstick')
         if  abs(leftstick) < .05:
-            kit.continuous_servo[0].throttle = deadzone
-            kit.continuous_servo[2].throttle = deadzone
+            hat.motor(0, deadzone)
+            hat.motor(2, deadzone)
+           
         if  abs(rightstick) > .05:
-            kit.continuous_servo[1].throttle = -rightstick
-            kit.continuous_servo[3].throttle = -rightstick
+            hat.motor(1, -rightstick)
+            hat.motor(3,  -rightstick)
             print('rightstick')
         if  abs(rightstick) < .05:
-            kit.continuous_servo[1].throttle = deadzone
-            kit.continuous_servo[3].throttle = deadzone
+            hat.motor(1, deadzone)
+            hat.motor(3,  deadzone)
 
         
 
