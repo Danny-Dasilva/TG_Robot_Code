@@ -80,31 +80,31 @@ class ControllerInput():
 
     return pygame.joystick.get_count() > 0
     
+    
 class Py_Hat():
     """
     Py-Hat class for the Adafruit_PCA1986 hat
-
     ...
-
 
     Methods
     -------
     motor(pin, value)
-        Prints the animals name and what sound it makes
+        controls and sets value of a motor
     
     servo(pin, angle)
-        Prints the animals name and what sound it makes
+        Controlls and sets angle of a servo
     
     """
     
-    def __init__(self, channels = 16, address = 96):
+    def __init__(self, channels = 16, address = 64):
         """
+
         Parameters
         ----------
         channels : int, optional
-            The name of the animal (default is 16)
-        address : address, optional
-            The sound the animal makes (default is 4)
+            Number of pins on the hat
+        address : int, optional
+            hex adress for i2c bus (default is 0x40)
         """
         
         
@@ -116,14 +116,16 @@ class Py_Hat():
 
         This function takes two arguments a pin and a value ranging from 1 to -1. 
         The pin number corresponds to the one on the pi-hat
+        ...
+
 
         Parameters
         ----------
         pin : int
-            The sound the animal makes (default is None)
+            the corresponding pin on the pi-hat
 
         value : int
-            The sound the animal makes (default is None)
+            input value for the motor (ranges from 1 to -1)
 
         """
         self.kit.continuous_servo[pin].throttle = value
@@ -132,13 +134,14 @@ class Py_Hat():
 
         This function takes two arguments a pin and a angle. 
         The pin number corresponds to the one on the pi-hat
+        ...
 
         Parameters
         ----------
         pin : int
-            The sound the animal makes (default is None)
+            the corresponding pin on the pi-hat
 
         angle : int
-            The sound the animal makes (default is None)
+            set angle of the servo, max angle depends on the type servo
         """
         self.kit.servo[pin].angle = angle

@@ -19,7 +19,7 @@ controller = ControllerInput()
 
 
 # initialize Pi Hat
-hat = Py_Hat()
+hat = Py_Hat(address=96)
 
 
 #Pinout map 
@@ -78,9 +78,6 @@ while True:
         Home = gamepad.get_button(8)
         Start = gamepad.get_button(7)
         Back = gamepad.get_button(6)
-
-
-
 
 
 
