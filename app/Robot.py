@@ -89,24 +89,25 @@ class Py_Hat():
 
     Methods
     -------
-    says(sound=None)
+    motor(pin, value)
         Prints the animals name and what sound it makes
+    
+    servo(pin, angle)
+        Prints the animals name and what sound it makes
+    
     """
-    def __init__(self):
+    
+    def __init__(self, channels = 16, address = 96):
         """
         Parameters
         ----------
-        name : str
-            The name of the animal
-        sound : str
-            The sound the animal makes
-        num_legs : int, optional
-            The number of legs the animal (default is 4)
+        channels : int, optional
+            The name of the animal (default is 16)
+        address : address, optional
+            The sound the animal makes (default is 4)
         """
         
         
-        channels = 16
-        address = 96
         kit = ServoKit(channels=channels, address=address)
         self.kit = kit
         
@@ -118,14 +119,12 @@ class Py_Hat():
 
         Parameters
         ----------
-        sound : str, optional
+        pin : int
             The sound the animal makes (default is None)
 
-        Raises
-        ------
-        NotImplementedError
-            If no sound is set for the animal or passed in as a
-            parameter.
+        value : int
+            The sound the animal makes (default is None)
+
         """
         self.kit.continuous_servo[pin].throttle = value
     def servo(self, pin, angle):
@@ -136,13 +135,10 @@ class Py_Hat():
 
         Parameters
         ----------
-        sound : str, optional
+        pin : int
             The sound the animal makes (default is None)
 
-        Raises
-        ------
-        NotImplementedError
-            If no sound is set for the animal or passed in as a
-            parameter.
+        angle : int
+            The sound the animal makes (default is None)
         """
         self.kit.servo[pin].angle = angle
