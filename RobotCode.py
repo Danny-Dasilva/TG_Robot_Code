@@ -51,14 +51,11 @@ while True:
     if not controller.hasController():
     # handle disconnect
         print('reconnect')
-        hat.motor(0, deadzone)
-        hat.motor(1, deadzone)
-        hat.motor(2, deadzone)
-        hat.motor(3, deadzone)
-        hat.motor(4, deadzone)
+        for pin in range(16):
+            hat.motor(pin, deadzone)
+        
        
     else:
-        #print(gamepad.get_name())
         sleep(.01)
         gamepad = pygame.joystick.Joystick(0)
         pygame.event.get()
@@ -86,45 +83,46 @@ while True:
         if LB == 1:
             hat.motor(4, 1)
             
-            print("armA_forward")
+            print("Motor Arm 1 forward")
         elif RB == 1:
             hat.motor(4, -1)
             
-            print("armA_back")
+            print("Motor Arm 1 back")
         else:
             hat.motor(4, deadzone)
 
         #  Arm B motor
         if LT > .75:
             hat.motor(5, 1)
-            print("armB_forward")
+            print("Motor Arm 2 forward")
         elif RT > .75:
             hat.motor(5, -1)
-            print("armB_back")
+            print("Motor Arm 2 back")
         else:
             hat.motor(5, deadzone)
-        
-        
+
+
 
         # Servo 1
         if A == 1:
             servo = min(servo + .2, servo_max)
+
             hat.servo(6, servo)
-            print("LAservo active")
+            print("servo 1 active")
         elif B == 1:
             servo = max(servo - .2, servo_min)
-            
+
             hat.servo(6, servo)
-            print("RAservo active")
+            print("servo 1 active")
         
         # Servo 2
         if X == 1:
 
             servo = min(servo + .2, servo_max)
 
-
             hat.servo(7, servo)
-            print("LBservo active")
+
+            print("servo 2 active")
 
         
         elif Y == 1:
@@ -132,15 +130,14 @@ while True:
             servo = max(servo - .2, servo_min)
             
             hat.servo(7, servo)
-            print("RBservo active")
+            print("servo 2 active")
 
 
         # Deadzone Test
         if Start == Y == Home == 1:
             deadzone = control_loop()
             
-
-
+            
         # Joystick Val
         if  abs(leftstick) > .05:
             hat.motor(0, leftstick)
