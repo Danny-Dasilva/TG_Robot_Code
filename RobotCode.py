@@ -10,7 +10,7 @@ import pygame
 import os
 sleep(1)
 
-
+# Fix for pygame on the coral
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
@@ -37,7 +37,7 @@ hat = Py_Hat()
 '''
 
 
-servo_5 = 0
+servo = 0
 # Configure min and max servo angle
 servo_min = 0  
 servo_max = 360
@@ -111,30 +111,30 @@ while True:
 
         # Servo 1
         if A == 1:
-            servo_5 = servo_5 + .2
-            if servo_5 > servo_max:
-                servo_5 = servo_max
-            hat.servo(6, servo_5)
+            servo = servo + .2
+            if servo > servo_max:
+                servo = servo_max
+            hat.servo(6, servo)
             print("LAservo active")
         elif B == 1:
-            servo_5 = servo_5 - .2
-            if servo_5 < servo_min:
-                servo_5 = servo_min
-            hat.servo(6, servo_5)
+            servo = servo - .2
+            if servo < servo_min:
+                servo = servo_min
+            hat.servo(6, servo)
             print("RAservo active")
         
         # Servo 2
         if X == 1:
-            servo_5 = servo_5 + .2
-            if servo_5 > servo_max:
-                servo_5 = servo_max
-            hat.servo(7, servo_5)
+            servo = servo + .2
+            if servo > servo_max:
+                servo = servo_max
+            hat.servo(7, servo)
             print("LBservo active")
         elif Y == 1:
-            servo_5 = servo_5 - .2
-            if servo_5 < servo_min:
-                servo_5 = servo_min
-            hat.servo(7, servo_5)
+            servo = servo - .2
+            if servo < servo_min:
+                servo = servo_min
+            hat.servo(7, servo)
             print("RBservo active")
 
 
