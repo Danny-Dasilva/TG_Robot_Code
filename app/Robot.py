@@ -82,11 +82,22 @@ class ControllerInput():
     
 class Py_Hat():
     def __init__(self):
+        """Py-Hat class for the Adafruit_PCA1986 HAT"""
         channels = 16
         address = 96
         kit = ServoKit(channels=channels, address=address)
         self.kit = kit
     def motor(self, pin, value):
+        """ Adafruit Servokit implementation of a motor
+
+        This function takes two arguments a pin and a value ranging from 1 to -1. 
+        The pin number corresponds to the one on the pi-hat
+        """
         self.kit.continuous_servo[pin].throttle = value
     def servo(self, pin, angle):
+        """ Adafruit Servokit implementation of a servo
+
+        This function takes two arguments a pin and a angle. 
+        The pin number corresponds to the one on the pi-hat
+        """
         self.kit.servo[pin].angle = angle
