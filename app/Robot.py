@@ -21,12 +21,14 @@ def Deadzone():
 def control_loop():
     deadzone = Deadzone()
     gamepad = pygame.joystick.Joystick(0)
+    hat = Py_Hat()
     while True:
         pygame.event.get()
         
         Back = gamepad.get_button(6)
         B = gamepad.get_button(1)
         X = gamepad.get_button(2)
+        
         print(Back)
         sleep(.03)
         
@@ -34,10 +36,10 @@ def control_loop():
             deadzone = deadzone + .01
         if X == 1:
             deadzone = deadzone - .01
-        kit.continuous_servo[1].throttle = deadzone
-        kit.continuous_servo[3].throttle = deadzone
-        kit.continuous_servo[0].throttle = deadzone
-        kit.continuous_servo[2].throttle = deadzone
+        for i in range(4):
+            hat.motor(i, deadzone)
+      
+
         if Back == 1:
             with open(path + '/var.csv', mode='w') as csv_file:
                 fieldnames = ['Deadzone']
