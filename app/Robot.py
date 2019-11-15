@@ -24,46 +24,10 @@ JoystickF310 = {
 
 
 path = os.path.dirname(os.path.abspath(__file__))
-def Deadzone():
-
-    with open(path +'/var.csv', mode='r') as csv_file:
-        csv_reader = csv.DictReader(csv_file)
-        for row in csv_reader:
-            deadzone = (float(row["Deadzone"]))
-        return deadzone
 
 
 
-def control_loop():
-    deadzone = Deadzone()
-    gamepad = pygame.joystick.Joystick(0)
-    hat = Py_Hat()
-    while True:
-        pygame.event.get()
-        
-        Back = gamepad.get_button(6)
-        B = gamepad.get_button(1)
-        X = gamepad.get_button(2)
 
-        print(Back)
-        sleep(.03)
-        
-        if B == 1:
-            deadzone = deadzone + .01
-        if X == 1:
-            deadzone = deadzone - .01
-
-        for i in range(16):
-            hat.motor(i, deadzone)
-      
-
-        if Back == 1:
-            with open(path + '/var.csv', mode='w') as csv_file:
-                fieldnames = ['Deadzone']
-                writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-                writer.writeheader()
-                writer.writerow({'Deadzone': deadzone})
-            return deadzone
 
 
 class ControllerInput():
@@ -132,6 +96,51 @@ class ControllerInput():
     def eventGet(self):
         return pygame.event.get()
 
+
+
+    
+    def Deadzone(self):
+
+        with open(path +'/var.csv', mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                self.deadzone = (float(row["Deadzone"]))
+            return deadzone
+
+
+
+
+    def control_loop(self):
+        deadzone = Deadzone()
+        controller = ControllerInput('Logitech F310')
+        hat = Py_Hat()
+        while True:
+            pygame.event.get()
+            
+            Back = controller.setButton('Back')
+            B = controller.setButton('B')
+            X = controller.setButton('X')
+
+        
+            
+            
+            if B == 1:
+                deadzone = deadzone + .01
+            if X == 1:
+                deadzone = deadzone - .01
+
+            for i in range(16):
+                hat.motor(i, deadzone)
+        
+
+            if Back == 1:
+                with open(path + '/var.csv', mode='w') as csv_file:
+                    fieldnames = ['Deadzone']
+                    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                    writer.writeheader()
+                    writer.writerow({'Deadzone': deadzone})
+                return deadzone
+            sleep(.03)
 
 
 
