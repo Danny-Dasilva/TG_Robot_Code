@@ -33,9 +33,6 @@ path = os.path.dirname(os.path.abspath(__file__))
 
 
 
-
-
-
 class Controller():
     """
     Controller disconnect class for pygame
