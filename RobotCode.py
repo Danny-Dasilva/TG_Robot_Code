@@ -134,7 +134,7 @@ while True:
 
         # Deadzone Test
         if Start == Y == Home == 1:
-            deadzone = control_loop()
+            deadzone = controller.control_loop()
             
             
         # Joystick Val
