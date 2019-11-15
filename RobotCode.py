@@ -22,20 +22,6 @@ controller = ControllerInput('Logitech F310')
 hat = Py_Hat(address=96)
 
 
-#Pinout map 
-'''
-0 left motor
-1 right motor
-2 left motor 2
-3 right motor 2
-
-4 arm motor 1
-5 arm motor 2
-6 servo 1
-7 servo 2
-
-'''
-
 
 servo = 0
 # Configure min and max servo angle
@@ -116,25 +102,20 @@ while True:
         
         # Servo 2
         if X == 1:
-
             servo = min(servo + .2, servo_max)
-
             hat.servo(7, servo)
-
             print("servo 2 active")
 
         
         elif Y == 1:
-
             servo = max(servo - .2, servo_min)
-            
             hat.servo(7, servo)
             print("servo 2 active")
 
 
         # Deadzone Test
         if Start == Y == Home == 1:
-            deadzone = controller.control_loop()
+            deadzone = controller.control_loop(.01)
             
             
         # Joystick Val

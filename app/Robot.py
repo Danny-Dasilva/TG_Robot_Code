@@ -1,9 +1,15 @@
+# Robot Class
+# Author: Danny Dasilva
+# License: Public Domain 
+
 import pygame
 import time
 import os
 from time import sleep
 import csv
-#from adafruit_servokit import ServoKit
+
+# from adafruit_servokit import ServoKit
+
 
 JoystickF310 = {
 		"leftstick" : 1,
@@ -69,8 +75,7 @@ class ControllerInput():
             print("Error, I didn't find any joysticks.")
         else:
             
-            # Use joystick #0 and initialize it
-
+            
             #Redundancy
             self.gamepad = pygame.joystick.Joystick(0)
             
@@ -88,7 +93,7 @@ class ControllerInput():
 
 
     def setButton(self, button):
-       
+        
         return self.gamepad.get_button(self.Joystick[button])
 
     def setAxis(self, axis):
@@ -98,19 +103,22 @@ class ControllerInput():
 
 
 
+
+
+
     
     def Deadzone(self):
 
         with open(path +'/var.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             for row in csv_reader:
-                self.deadzone = (float(row["Deadzone"]))
+                deadzone = (float(row["Deadzone"]))
             return deadzone
 
 
 
 
-    def control_loop(self):
+    def control_loop(self, increment):
         deadzone = Deadzone()
         controller = ControllerInput('Logitech F310')
         hat = Py_Hat()
@@ -121,13 +129,10 @@ class ControllerInput():
             B = controller.setButton('B')
             X = controller.setButton('X')
 
-        
-            
-            
             if B == 1:
-                deadzone = deadzone + .01
+                deadzone = deadzone + increment
             if X == 1:
-                deadzone = deadzone - .01
+                deadzone = deadzone - increment
 
             for i in range(16):
                 hat.motor(i, deadzone)
