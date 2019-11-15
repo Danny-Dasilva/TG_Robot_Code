@@ -6,12 +6,20 @@ import csv
 #from adafruit_servokit import ServoKit
 
 JoystickF310 = {
-		"iphone" : 2007,
-		"iphone 3G" : 2008,
-		"iphone 3GS" : 2009,
-		"iphone 4" : 2010,
-		"iphone 4S" : 2011,
-		"iphone 5" : 2012
+		"leftstick" : 1,
+		"rightstick" : 4,
+		"B" : 1,
+		"X" : 2,
+		"A" : 0,
+		"Y" : 3,
+        "LB" : 4,
+		"RB" : 5,
+		"LT" : 2,
+		"RT" : 5,
+		"Home" : 8,
+		"Start" : 7,
+        "Back" : 6,
+		
 	}
 
 
@@ -69,7 +77,7 @@ class ControllerInput():
         checks if a current controller exists
     
     """
-    def __init__(self):
+    def __init__(self, js_name):
         pygame.init()
         pygame.joystick.init()
         self.lastTime = 0
@@ -79,6 +87,8 @@ class ControllerInput():
         self.Inactivity = 7
         #Redundancy
         self.gamepad = pygame.joystick.Joystick(0)
+        if js_name in ('Logitech F310'):
+            self.Joystick = JoystickF310
 
     def hasController(self):
         now = time.time()
@@ -114,7 +124,7 @@ class ControllerInput():
 
     def setButton(self, button):
        
-        return self.gamepad.get_button(released[button])
+        return self.gamepad.get_button(self.Joystick[button])
 
     def setAxis(self, axis):
         return self.gamepad.get_axis(axis)
@@ -188,43 +198,3 @@ class Py_Hat():
         """
         self.kit.servo[pin].angle = angle
 
-
-
-
-
-
-class JoystickF310:
-    # d-pad
-    UP = -1  # UP
-    DOWN = -1  # DOWN
-    ROTATE_LEFT = -1  # LEFT
-    ROTATE_RIGHT = -1  # RIGHT
-
-    # bumper triggers
-    R1 = 5  # R1
-    L1 = 4  # L1
-    R2 = 7 #R2
-    L2 = 6 #L2
-
-    # buttons
-    Y = 3  # Y
-    B = 0  # B
-    X = 2  # X
-    A = 1  # A
-
-    # axis
-    LEFT_X = 0
-    LEFT_Y = 1
-    RIGHT_X = 3
-    RIGHT_Y = 4
-    LEFT_X_REVERSE = 1.0
-    LEFT_Y_REVERSE = -1.0
-    RIGHT_X_REVERSE = 1.0
-    RIGHT_Y_REVERSE = -1.0
-    DEADZONE = 0.08
-
-
-
-
-    #return self.gamepad.get_button(button)
-setButton('iphone')

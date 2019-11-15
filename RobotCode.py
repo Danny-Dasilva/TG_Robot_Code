@@ -15,7 +15,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
 #handle controller disconnect
-controller = ControllerInput()
+controller = ControllerInput('Logitech F310')
 
 
 # initialize Pi Hat
