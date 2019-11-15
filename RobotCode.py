@@ -64,17 +64,17 @@ while True:
         leftstick = controller.setAxis(1)
         rightstick = controller.setAxis(4)
         
-        B = controller.setButton(1)
-        X = controller.setButton(2)
-        A = controller.setButton(0)
-        Y = controller.setButton(3)
-        LB = controller.setButton(4)
-        RB = controller.setButton(5)
-        LT = controller.setAxis(2)
-        RT = controller.setAxis(5)
-        Home = controller.setButton(8)
-        Start = controller.setButton(7)
-        Back = controller.setButton(6)
+        B = controller.setButton('B')
+        X = controller.setButton('X')
+        A = controller.setButton('A')
+        Y = controller.setButton('Y')
+        LB = controller.setButton('LB')
+        RB = controller.setButton('RB')
+        LT = controller.setAxis('LT')
+        RT = controller.setAxis('RT')
+        Home = controller.setButton('Home')
+        Start = controller.setButton('Start')
+        Back = controller.setButton('Back')
 
 
 
@@ -155,7 +155,6 @@ while True:
         if  abs(rightstick) < .05:
             hat.motor(1, deadzone)
             hat.motor(3,  deadzone)
-
         
         sleep(.2)
         

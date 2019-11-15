@@ -127,7 +127,7 @@ class ControllerInput():
         return self.gamepad.get_button(self.Joystick[button])
 
     def setAxis(self, axis):
-        return self.gamepad.get_axis(axis)
+        return self.gamepad.get_axis(self.Joystick[axis])
 
 
 
