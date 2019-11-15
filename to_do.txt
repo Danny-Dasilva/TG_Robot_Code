@@ -5,6 +5,7 @@ simplified api
 
 
 
+privatized variables
 
 
 incorporate lights

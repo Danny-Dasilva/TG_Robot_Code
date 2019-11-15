@@ -36,7 +36,7 @@ path = os.path.dirname(os.path.abspath(__file__))
 
 
 
-class ControllerInput():
+class Controller():
     """
     Controller disconnect class for pygame
     ...
@@ -61,7 +61,7 @@ class ControllerInput():
         if js_name in ('Logitech F310'):
             self.Joystick = JoystickF310
 
-    def hasController(self):
+    def has_controller(self):
         now = time.time()
         if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
             self.lastTime = now
@@ -86,19 +86,19 @@ class ControllerInput():
 
 
 
-    def Gamepad(self):
+    def gamepad(self):
         gamepad = pygame.joystick.Joystick(0)
 
         return gamepad
 
 
-    def setButton(self, button):
-        
+    def set_button(self, button):
+
         return self.gamepad.get_button(self.Joystick[button])
 
-    def setAxis(self, axis):
+    def set_axis(self, axis):
         return self.gamepad.get_axis(self.Joystick[axis])
-    def eventGet(self):
+    def event_get(self):
         return pygame.event.get()
 
 
@@ -107,7 +107,7 @@ class ControllerInput():
 
 
     
-    def Deadzone(self):
+    def deadzone(self):
 
         with open(path +'/var.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
@@ -119,7 +119,7 @@ class ControllerInput():
 
 
     def control_loop(self, increment):
-        deadzone = Deadzone()
+        deadzone = deadzone()
         controller = ControllerInput('Logitech F310')
         hat = Py_Hat()
         while True:
@@ -198,6 +198,7 @@ class Py_Hat():
 
         """
         self.kit.continuous_servo[pin].throttle = value
+        
     def servo(self, pin, angle):
         """Adafruit Servokit implementation of a motor
 

@@ -3,10 +3,8 @@
 # License: Public Domain 
 
 
-from __future__ import division
-from app.Robot import ControllerInput, Deadzone, control_loop, Py_Hat
+from app.Robot import Controller, Py_Hat
 from time import sleep
-import pygame
 import os
 sleep(1)
 
@@ -16,7 +14,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
 #controller class
-controller = ControllerInput('Logitech F310')
+controller = Controller('Logitech F310')
 
 
 # initialize Pi Hat
@@ -24,7 +22,7 @@ hat = Py_Hat(address=96)
 
 
 # configure deadzone
-deadzone = Deadzone()
+deadzone = controller.deadzone()
 
 
 
@@ -42,7 +40,7 @@ servo = 0
 
 while True:
     
-    if not controller.hasController():
+    if not controller.has_controller():
     # handle disconnect
         print('reconnect the controller')
         #loop through all the pins and set them to 0
@@ -57,20 +55,20 @@ while True:
         controller.eventGet()
      
         # setup controls
-        leftstick = controller.setAxis('leftstick')
-        rightstick = controller.setAxis('rightstick')
+        leftstick = controller.set_axis('leftstick')
+        rightstick = controller.set_axis('rightstick')
         
-        B = controller.setButton('B')
-        X = controller.setButton('X')
-        A = controller.setButton('A')
-        Y = controller.setButton('Y')
-        LB = controller.setButton('LB')
-        RB = controller.setButton('RB')
-        LT = controller.setAxis('LT')
-        RT = controller.setAxis('RT')
-        Home = controller.setButton('Home')
-        Start = controller.setButton('Start')
-        Back = controller.setButton('Back')
+        B = controller.set_button('B')
+        X = controller.set_button('X')
+        A = controller.set_button('A')
+        Y = controller.set_button('Y')
+        LB = controller.set_button('LB')
+        RB = controller.set_button('RB')
+        LT = controller.set_axis('LT')
+        RT = controller.set_axis('RT')
+        Home = controller.set_button('Home')
+        Start = controller.set_button('Start')
+        Back = controller.set_button('Back')
 
 
 
@@ -143,7 +141,8 @@ while True:
             hat.motor(1, -rightstick)
             hat.motor(3,  -rightstick)
             print('rightstick')
-            
+
+
         if  abs(rightstick) < .05:
             hat.motor(1, deadzone)
             hat.motor(3,  deadzone)
