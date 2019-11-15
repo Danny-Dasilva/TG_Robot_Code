@@ -10,11 +10,12 @@ import pygame
 import os
 sleep(1)
 
+
 # Fix for pygame on the coral
 os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
-#handle controller disconnect
+#controller class
 controller = ControllerInput('Logitech F310')
 
 
@@ -22,30 +23,40 @@ controller = ControllerInput('Logitech F310')
 hat = Py_Hat(address=96)
 
 
+# configure deadzone
+deadzone = Deadzone()
 
-servo = 0
-# Configure min and max servo angle
+
+
+# Configure min and max servo angle as well  as init
 servo_min = 0  
 servo_max = 360
+servo = 0
 
 
 
-deadzone = Deadzone()
+
+
+
+
 
 while True:
     
     if not controller.hasController():
     # handle disconnect
-        print('reconnect')
+        print('reconnect the controller')
+        #loop through all the pins and set them to 0
         for pin in range(16):
             hat.motor(pin, deadzone)
+
+        print('reconnect')
         
        
     else:
         
         controller.eventGet()
      
-
+        # setup controls
         leftstick = controller.setAxis('leftstick')
         rightstick = controller.setAxis('rightstick')
         
@@ -67,14 +78,13 @@ while True:
         #  Arm A motor
         if LB == 1:
             hat.motor(4, 1)
-            
             print("Motor Arm 1 forward")
         elif RB == 1:
             hat.motor(4, -1)
-            
             print("Motor Arm 1 back")
         else:
             hat.motor(4, deadzone)
+
 
         #  Arm B motor
         if LT > .75:
@@ -91,15 +101,14 @@ while True:
         # Servo 1
         if A == 1:
             servo = min(servo + .2, servo_max)
-
             hat.servo(6, servo)
             print("servo 1 active")
         elif B == 1:
             servo = max(servo - .2, servo_min)
-
             hat.servo(6, servo)
             print("servo 1 active")
         
+
         # Servo 2
         if X == 1:
             servo = min(servo + .2, servo_max)
@@ -113,30 +122,34 @@ while True:
             print("servo 2 active")
 
 
-        # Deadzone Test
+
+        # Reset Deadzone
         if Start == Y == Home == 1:
             deadzone = controller.control_loop(.01)
             
             
-        # Joystick Val
+        # Set Joystick
         if  abs(leftstick) > .05:
             hat.motor(0, leftstick)
             hat.motor(2, leftstick)
-           
             print('leftstick')
+
         if  abs(leftstick) < .05:
             hat.motor(0, deadzone)
             hat.motor(2, deadzone)
            
+
         if  abs(rightstick) > .05:
             hat.motor(1, -rightstick)
             hat.motor(3,  -rightstick)
             print('rightstick')
+            
         if  abs(rightstick) < .05:
             hat.motor(1, deadzone)
             hat.motor(3,  deadzone)
         
-        sleep(.2)
+        # sleep for smooth loops
+        sleep(.02)
         
     
     
