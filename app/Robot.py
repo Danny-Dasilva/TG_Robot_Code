@@ -80,6 +80,7 @@ class ControllerInput():
     def __init__(self, js_name):
         pygame.init()
         pygame.joystick.init()
+        
         self.lastTime = 0
         self.lastActive = 0
         self.gamepad = 0
@@ -128,6 +129,8 @@ class ControllerInput():
 
     def setAxis(self, axis):
         return self.gamepad.get_axis(self.Joystick[axis])
+    def eventGet(self):
+        return pygame.event.get()
 
 
 

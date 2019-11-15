@@ -57,12 +57,11 @@ while True:
        
     else:
         
-       
-        pygame.event.get()
+        controller.eventGet()
      
 
-        leftstick = controller.setAxis(1)
-        rightstick = controller.setAxis(4)
+        leftstick = controller.setAxis('leftstick')
+        rightstick = controller.setAxis('rightstick')
         
         B = controller.setButton('B')
         X = controller.setButton('X')
