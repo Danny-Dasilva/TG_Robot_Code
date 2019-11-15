@@ -56,7 +56,7 @@ while True:
         
        
     else:
-        sleep(.01)
+        
        
         pygame.event.get()
      
@@ -64,17 +64,17 @@ while True:
         leftstick = controller.setAxis(1)
         rightstick = controller.setAxis(4)
         
-        B = controller.get_button(1)
-        X = controller.get_button(2)
-        A = controller.get_button(0)
-        Y = controller.get_button(3)
-        LB = controller.get_button(4)
-        RB = controller.get_button(5)
-        LT = controller.get_axis(2)
-        RT = controller.get_axis(5)
-        Home = controller.get_button(8)
-        Start = controller.get_button(7)
-        Back = controller.get_button(6)
+        B = controller.setButton(1)
+        X = controller.setButton(2)
+        A = controller.setButton(0)
+        Y = controller.setButton(3)
+        LB = controller.setButton(4)
+        RB = controller.setButton(5)
+        LT = controller.setAxis(2)
+        RT = controller.setAxis(5)
+        Home = controller.setButton(8)
+        Start = controller.setButton(7)
+        Back = controller.setButton(6)
 
 
 
@@ -157,7 +157,7 @@ while True:
             hat.motor(3,  deadzone)
 
         
-
+        sleep(.2)
         
     
     

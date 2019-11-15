@@ -3,8 +3,16 @@ import time
 import os
 from time import sleep
 import csv
-from adafruit_servokit import ServoKit
+#from adafruit_servokit import ServoKit
 
+JoystickF310 = {
+		"iphone" : 2007,
+		"iphone 3G" : 2008,
+		"iphone 3GS" : 2009,
+		"iphone 4" : 2010,
+		"iphone 4S" : 2011,
+		"iphone 5" : 2012
+	}
 
 
 path = os.path.dirname(os.path.abspath(__file__))
@@ -69,6 +77,7 @@ class ControllerInput():
         self.gamepad = 0
         self.Recon_timeout = 7
         self.Inactivity = 7
+        #Redundancy
         self.gamepad = pygame.joystick.Joystick(0)
 
     def hasController(self):
@@ -86,7 +95,9 @@ class ControllerInput():
         else:
             
             # Use joystick #0 and initialize it
-            gamepad = pygame.joystick.Joystick(0)
+
+            #Redundancy
+            self.gamepad = pygame.joystick.Joystick(0)
             
             gamepad.init()
 
@@ -101,13 +112,16 @@ class ControllerInput():
         return gamepad
 
 
-
-
     def setButton(self, button):
-        return self.gamepad.get_button(button)
-        
+       
+        return self.gamepad.get_button(released[button])
+
     def setAxis(self, axis):
         return self.gamepad.get_axis(axis)
+
+
+
+
 
 class Py_Hat():
     """
@@ -173,3 +187,44 @@ class Py_Hat():
             set angle of the servo, max angle depends on the type servo
         """
         self.kit.servo[pin].angle = angle
+
+
+
+
+
+
+class JoystickF310:
+    # d-pad
+    UP = -1  # UP
+    DOWN = -1  # DOWN
+    ROTATE_LEFT = -1  # LEFT
+    ROTATE_RIGHT = -1  # RIGHT
+
+    # bumper triggers
+    R1 = 5  # R1
+    L1 = 4  # L1
+    R2 = 7 #R2
+    L2 = 6 #L2
+
+    # buttons
+    Y = 3  # Y
+    B = 0  # B
+    X = 2  # X
+    A = 1  # A
+
+    # axis
+    LEFT_X = 0
+    LEFT_Y = 1
+    RIGHT_X = 3
+    RIGHT_Y = 4
+    LEFT_X_REVERSE = 1.0
+    LEFT_Y_REVERSE = -1.0
+    RIGHT_X_REVERSE = 1.0
+    RIGHT_Y_REVERSE = -1.0
+    DEADZONE = 0.08
+
+
+
+
+    #return self.gamepad.get_button(button)
+setButton('iphone')
