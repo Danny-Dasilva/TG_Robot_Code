@@ -57,24 +57,24 @@ while True:
        
     else:
         sleep(.01)
-        gamepad = pygame.joystick.Joystick(0)
+       
         pygame.event.get()
      
 
-        leftstick = gamepad.get_axis(1)
-        rightstick = gamepad.get_axis(4)
+        leftstick = controller.setAxis(1)
+        rightstick = controller.setAxis(4)
         
-        B = gamepad.get_button(1)
-        X = gamepad.get_button(2)
-        A = gamepad.get_button(0)
-        Y = gamepad.get_button(3)
-        LB = gamepad.get_button(4)
-        RB = gamepad.get_button(5)
-        LT = gamepad.get_axis(2)
-        RT = gamepad.get_axis(5)
-        Home = gamepad.get_button(8)
-        Start = gamepad.get_button(7)
-        Back = gamepad.get_button(6)
+        B = controller.get_button(1)
+        X = controller.get_button(2)
+        A = controller.get_button(0)
+        Y = controller.get_button(3)
+        LB = controller.get_button(4)
+        RB = controller.get_button(5)
+        LT = controller.get_axis(2)
+        RT = controller.get_axis(5)
+        Home = controller.get_button(8)
+        Start = controller.get_button(7)
+        Back = controller.get_button(6)
 
 
 

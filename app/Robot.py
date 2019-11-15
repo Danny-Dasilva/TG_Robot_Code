@@ -69,7 +69,7 @@ class ControllerInput():
         self.gamepad = 0
         self.Recon_timeout = 7
         self.Inactivity = 7
-
+        self.gamepad = pygame.joystick.Joystick(0)
 
     def hasController(self):
         now = time.time()
@@ -91,7 +91,23 @@ class ControllerInput():
             gamepad.init()
 
         return pygame.joystick.get_count() > 0
+
+
+
+
+    def Gamepad(self):
+        gamepad = pygame.joystick.Joystick(0)
+
+        return gamepad
+
+
+
+
+    def setButton(self, button):
+        return self.gamepad.get_button(button)
         
+    def setAxis(self, axis):
+        return self.gamepad.get_axis(axis)
 
 class Py_Hat():
     """
