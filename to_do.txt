@@ -4,8 +4,35 @@ road map
 simplified api
 
 
+include other joystick axes in joystick class
+
+
+
+check for coral or raspi- 
+
+figure out autonomous
+vs their own code
+
+
+
+
+
+
+
+try 
+run their code
+except:
+run 
+main robot.py file
+
 
 privatized variables
+annotated class code
+
+
 
 
 incorporate lights
+
+
+example vid for setup
