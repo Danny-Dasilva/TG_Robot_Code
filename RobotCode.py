@@ -3,7 +3,7 @@
 # License: Public Domain 
 
 
-from app.Rob import Controller, Py_Hat, ControllerInput
+from app.Robot import Controller, Py_Hat, Controller_Input
 from time import sleep
 import os
 sleep(1)
@@ -30,7 +30,7 @@ deadzone = controller.deadzone()
 servo_min = 0  
 servo_max = 360
 servo = 0
-d = ControllerInput()
+d = Controller_Input()
 
 
 
