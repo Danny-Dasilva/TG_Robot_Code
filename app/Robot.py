@@ -187,7 +187,7 @@ class Py_Hat():
         """
         self.kit.servo[pin].angle = angle
 
-class Controller_Input():
+class Check_Input():
   def __init__(self):
     pygame.init()
     pygame.joystick.init()
@@ -197,7 +197,7 @@ class Controller_Input():
     self.Recon_timeout = 7
     self.Inactivity = 7
 
-  def hasController(self):
+  def has_controller(self):
     now = time.time()
     if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
       self.lastTime = now

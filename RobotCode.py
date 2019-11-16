@@ -3,7 +3,7 @@
 # License: Public Domain 
 
 
-from app.Robot import Controller, Py_Hat, Controller_Input
+from app.Robot import Controller, Py_Hat, Check_Input
 from time import sleep
 import os
 sleep(1)
@@ -30,7 +30,7 @@ deadzone = controller.deadzone()
 servo_min = 0  
 servo_max = 360
 servo = 0
-d = Controller_Input()
+disconnect = Check_Input()
 
 
 
@@ -40,7 +40,7 @@ d = Controller_Input()
 
 while True:
     
-    if not d.hasController():
+    if not disconnect.has_controller():
     # handle disconnect
         print('reconnect the controller')
         #loop through all the pins and set them to 0
