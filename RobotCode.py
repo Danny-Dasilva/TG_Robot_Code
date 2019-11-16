@@ -3,7 +3,7 @@
 # License: Public Domain 
 
 
-from app.Robot import Controller, Py_Hat
+from app.Rob import Controller, Py_Hat, ControllerInput
 from time import sleep
 import os
 sleep(1)
@@ -30,7 +30,7 @@ deadzone = controller.deadzone()
 servo_min = 0  
 servo_max = 360
 servo = 0
-
+d = ControllerInput()
 
 
 
@@ -40,7 +40,7 @@ servo = 0
 
 while True:
     
-    if not controller.has_controller():
+    if not d.hasController():
     # handle disconnect
         print('reconnect the controller')
         #loop through all the pins and set them to 0
@@ -52,7 +52,7 @@ while True:
        
     else:
         
-        controller.eventGet()
+        controller.event_get()
      
         # setup controls
         leftstick = controller.set_axis('leftstick')
