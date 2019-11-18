@@ -1,6 +1,8 @@
 
 road map
 
+
+raise error
 simplified api
 
 

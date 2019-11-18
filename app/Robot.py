@@ -35,16 +35,41 @@ path = os.path.dirname(os.path.abspath(__file__))
 
 class Controller():
     """
-    Controller disconnect class for pygame
+    Controller class
     ...
 
     Methods
     -------
-    hasController()
-        checks if a current controller exists
+    gamepad(pin, value)
+        controls and sets value of a motor
+    
+    set_button(pin, button)
+        Controlls and sets angle of a servo
+
+    set_axis(pin, axis)
+        Controlls and sets angle of a servo
+
+    event_get()
+        Controlls and sets angle of a servo
+
+    deadzone()
+        Reads from csv file and returns deadzone value
+
+    control_loop(pin, increment, hat)
+        Controlls and sets angle of a servo
     
     """
-    def __init__(self, js_name):
+    def __init__(self, js_name='Logitech F310'):
+        """
+        Initializes the Controller class, sets up pygame to be called in later functions
+        ...
+
+        Parameters
+        ----------
+        js_name : string, optional
+            The type of controller you are using 
+        """
+
         pygame.init()
         pygame.joystick.init()
         #Redundancy
@@ -54,31 +79,23 @@ class Controller():
         self.gamepad = pygame.joystick.Joystick(0)
         self.gamepad.init()
 
-
-
-
-    def gamepad(self):
-        gamepad = pygame.joystick.Joystick(0)
-
-        return gamepad
-
-
     def set_button(self, button):
-
         return self.gamepad.get_button(self.Joystick[button])
 
     def set_axis(self, axis):
         return self.gamepad.get_axis(self.Joystick[axis])
+    
     def event_get(self):
         pygame.event.get()
 
-
-
-
-
-
-    
     def deadzone(self):
+        """ Set deadzone variable 
+
+        Reads from a csv file and returns a deadzone
+        ...
+
+        """
+
 
         with open(path +'/var.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
@@ -90,9 +107,25 @@ class Controller():
 
 
     def control_loop(self, increment, hat):
+        """ Control loop to set deadzone variable 
+
+        This function takes two arguments, the amount you increment
+        ...
+
+
+        Parameters
+        ----------
+        increment : int
+            the corresponding pin on the pi-hat
+
+        hat : variable
+            input value for the motor (ranges from 1 to -1)
+
+        """
+
         deadzone = self.deadzone()
         controller = Controller('Logitech F310')
-        print(dir(controller))
+
         while True:
             pygame.event.get()
             

@@ -14,7 +14,7 @@ os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 
 #controller class
-controller = Controller('Logitech F310')
+controller = Controller()
 
 
 # initialize Pi Hat
@@ -44,9 +44,9 @@ while True:
     # handle disconnect
         print('reconnect the controller')
         #loop through all the pins and set them to 0
-        for pin in range(4):
+        for pin in range(16):
             hat.motor(pin, deadzone)
-
+channels
         print('reconnect')
         
        
@@ -120,9 +120,7 @@ while True:
 
 
 
-        # Reset Deadzone
-        if Start == Y == Home == 1:
-            deadzone = controller.control_loop(.01, hat)
+        
             
             
         # Set Joystick
@@ -145,6 +143,11 @@ while True:
         if  abs(rightstick) < .05:
             hat.motor(1, deadzone)
             hat.motor(3,  deadzone)
+
+
+        # Reset Deadzone
+        if Start == Y == Home == 1:
+            deadzone = controller.control_loop(.01, hat)
         
         # sleep for smooth loops
         sleep(.02)
