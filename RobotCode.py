@@ -6,7 +6,7 @@
 from app.Robot import Controller, Py_Hat, Check_Input
 from time import sleep
 import os
-sleep(1)
+
 
 
 # Fix for pygame on the coral
@@ -44,16 +44,15 @@ while True:
     # handle disconnect
         print('reconnect the controller')
         #loop through all the pins and set them to 0
-        for pin in range(16):
+        for pin in range(4):
             hat.motor(pin, deadzone)
 
         print('reconnect')
         
        
     else:
-        
         controller.event_get()
-     
+        
         # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
@@ -123,7 +122,7 @@ while True:
 
         # Reset Deadzone
         if Start == Y == Home == 1:
-            deadzone = controller.control_loop(.01)
+            deadzone = controller.control_loop(.01, hat)
             
             
         # Set Joystick
@@ -135,7 +134,7 @@ while True:
         if  abs(leftstick) < .05:
             hat.motor(0, deadzone)
             hat.motor(2, deadzone)
-           
+            
 
         if  abs(rightstick) > .05:
             hat.motor(1, -rightstick)
@@ -150,8 +149,8 @@ while True:
         # sleep for smooth loops
         sleep(.02)
         
-    
-    
+
+
 
 
 

@@ -89,23 +89,23 @@ class Controller():
 
 
 
-    def control_loop(self, increment):
-        deadzone = deadzone()
-        controller = ControllerInput('Logitech F310')
-        hat = Py_Hat()
+    def control_loop(self, increment, hat):
+        deadzone = self.deadzone()
+        controller = Controller('Logitech F310')
+        print(dir(controller))
         while True:
             pygame.event.get()
             
-            Back = controller.setButton('Back')
-            B = controller.setButton('B')
-            X = controller.setButton('X')
+            Back = controller.set_button('Back')
+            B = controller.set_button('B')
+            X = controller.set_button('X')
 
             if B == 1:
                 deadzone = deadzone + increment
             if X == 1:
                 deadzone = deadzone - increment
 
-            for i in range(16):
+            for i in range(4):
                 hat.motor(i, deadzone)
         
 
@@ -138,6 +138,8 @@ class Py_Hat():
     
     def __init__(self, channels = 16, address = 64):
         """
+        add description here
+        ...
 
         Parameters
         ----------
@@ -187,6 +189,8 @@ class Py_Hat():
         """
         self.kit.servo[pin].angle = angle
 
+
+
 class Check_Input():
   def __init__(self):
     pygame.init()
@@ -199,6 +203,7 @@ class Check_Input():
 
   def has_controller(self):
     now = time.time()
+    
     if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
       self.lastTime = now
       pygame.joystick.quit()
@@ -217,3 +222,4 @@ class Check_Input():
           gamepad.init()
 
     return pygame.joystick.get_count() > 0
+    
