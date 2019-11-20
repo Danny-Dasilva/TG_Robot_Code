@@ -10,6 +10,8 @@ import csv
 
 from adafruit_servokit import ServoKit
 
+path = os.path.dirname(os.path.abspath(__file__))
+
 
 JoystickF310 = {
 		"leftstick" : 1,
@@ -28,8 +30,6 @@ JoystickF310 = {
 		
 	}
 
-
-path = os.path.dirname(os.path.abspath(__file__))
 
 
 
@@ -80,12 +80,34 @@ class Controller():
         self.gamepad.init()
 
     def set_button(self, button):
+        """ Set Controller button 
+        
+        Parameters
+        ----------
+        button : int
+            corresponding control button 
+
+        """
+
         return self.gamepad.get_button(self.Joystick[button])
 
     def set_axis(self, axis):
+        """ Set Controller axis 
+        
+        Parameters
+        ----------
+        axis : int
+            corresponding control axis 
+
+        """
+
         return self.gamepad.get_axis(self.Joystick[axis])
     
     def event_get(self):
+        """ Set deadzone variable 
+
+        """
+
         pygame.event.get()
 
     def deadzone(self):
@@ -116,10 +138,10 @@ class Controller():
         Parameters
         ----------
         increment : int
-            the corresponding pin on the pi-hat
+            the value to increment the deadzone
 
         hat : variable
-            input value for the motor (ranges from 1 to -1)
+            Py_Hat class object to send pwm signals
 
         """
 
@@ -226,7 +248,7 @@ class Py_Hat():
 
 class Check_Input():
     """
-    Classs to deal with controller disconnects
+    Class to deal with controller disconnect
     ...
 
     Methods
@@ -238,40 +260,45 @@ class Check_Input():
     
     """
 
-  def __init__(self):
+  def __init__(self, last_time=0, last_active = 0, recon_timeout = 7, inactivity = 7):
     """
-    Sets class variables for has_controller function and inits pygame
-    
+    Parameters
+    ----------
+    recon_timeout : int, optional
+        The number of legs the animal (default is 7)
+    inactivity : int, optional
+        The number of legs the animal (default is 7)
     """
 
     pygame.init()
     pygame.joystick.init()
-    self.lastTime = 0
-    self.lastActive = 0
-    self.gamepad = 0
-    self.Recon_timeout = 7
-    self.Inactivity = 7
+
+    self.last_time = 0
+    self.last_active = 0
+    self.recon_timeout = recon_timeout
+    self.inactivity = inactivity
 
   def has_controller(self):
     """Returns true or false based on whether a controller is plugged in 
+    ...
 
     Lowers the time it takes to check controller disconnect if a controller is unplugged, prints error 
 
 
-
     """
+    
 
     now = time.time()
     
-    if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
-      self.lastTime = now
+    if now - self.last_active > self.inactivity and now - self.last_time > self.recon_timeout:
+      self.last_time = now
       pygame.joystick.quit()
       pygame.joystick.init()
     
       joystick_count = pygame.joystick.get_count()
       if joystick_count == 0:
           # No joysticks!
-          self.Recon_timeout = 1
+          self.recon_timeout = 1
           print("Error, I didn't find any joysticks.")
       else:
           
