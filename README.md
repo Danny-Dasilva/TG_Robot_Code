@@ -1,13 +1,14 @@
 # TG_Robot_Code
-Google coral Robot Code with the adafruit servokit library
+Robot Code for Tech garage compatible with the Google Coral and Raspberry Pi
 
 ## Get Started
 `git clone https://github.com/Danny-Dasilva/TG_Robot_Code.git`
  
  path to folder 
+ 
  `cd TG_Robot_Code`
  
- dependencies
+ install dependencies 
  
  `sh scripts/install.sh`
  
