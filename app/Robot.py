@@ -246,37 +246,27 @@ class Py_Hat():
 
 
 
+
 class Check_Input():
-    """
-    Class to deal with controller disconnect
-    ...
+  """
+  Class to deal with controller disconnect
+  ...
 
-    Methods
-    -------
-    has_controller()
-        returns true or false based on whether or not a controller is plugged in
-    
-   
-    
-    """
+  Methods
+  -------
+  has_controller()
+     returns true or false based on whether or not a controller is plugged in
 
-  def __init__(self, last_time=0, last_active = 0, recon_timeout = 7, inactivity = 7):
-    """
-    Parameters
-    ----------
-    recon_timeout : int, optional
-        The number of legs the animal (default is 7)
-    inactivity : int, optional
-        The number of legs the animal (default is 7)
-    """
+  """
 
+  def __init__(self):
     pygame.init()
     pygame.joystick.init()
-
-    self.last_time = 0
-    self.last_active = 0
-    self.recon_timeout = recon_timeout
-    self.inactivity = inactivity
+    self.lastTime = 0
+    self.lastActive = 0
+    self.gamepad = 0
+    self.Recon_timeout = 7
+    self.Inactivity = 7
 
   def has_controller(self):
     """Returns true or false based on whether a controller is plugged in 
@@ -286,19 +276,18 @@ class Check_Input():
 
 
     """
-    
+
 
     now = time.time()
-    
-    if now - self.last_active > self.inactivity and now - self.last_time > self.recon_timeout:
-      self.last_time = now
+    if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
+      self.lastTime = now
       pygame.joystick.quit()
       pygame.joystick.init()
     
       joystick_count = pygame.joystick.get_count()
       if joystick_count == 0:
           # No joysticks!
-          self.recon_timeout = 1
+          self.Recon_timeout = 1
           print("Error, I didn't find any joysticks.")
       else:
           
