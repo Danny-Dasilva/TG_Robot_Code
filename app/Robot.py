@@ -225,7 +225,25 @@ class Py_Hat():
 
 
 class Check_Input():
+    """
+    Classs to deal with controller disconnects
+    ...
+
+    Methods
+    -------
+    has_controller()
+        returns true or false based on whether or not a controller is plugged in
+    
+   
+    
+    """
+
   def __init__(self):
+     """
+    Sets class variables for has_controller function and inits pygame
+    ...
+    """
+
     pygame.init()
     pygame.joystick.init()
     self.lastTime = 0
@@ -235,6 +253,13 @@ class Check_Input():
     self.Inactivity = 7
 
   def has_controller(self):
+    """Adafruit Servokit implementation of a motor
+
+    This function takes two arguments a pin and a angle. 
+    The pin number corresponds to the one on the pi-hat
+    ...
+    """
+
     now = time.time()
     
     if now - self.lastActive > self.Inactivity and now - self.lastTime > self.Recon_timeout:
