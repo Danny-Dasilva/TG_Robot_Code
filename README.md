@@ -7,22 +7,20 @@ Google coral Robot Code with the adafruit servokit library
  path to folder 
  `cd TG-Coral-Robot_Code`
  
- if you need to install pygame as well as the servokit library
+ dependencies
  
- `sh pygame.sh`
+ `sh scripts/install.sh`
  
- if you need just the servokit library
- 
- `sh install.sh`
  
 
 ## Autoboot code
 
-`sh auto.sh`
+`sh scripts/auto.sh`
 
 This will put the `Robot code.py` path in your crontab which will run on boot
+
  ## Examples
-In `/test/`
+In `test/`
  
  controller map test
  
@@ -65,7 +63,7 @@ Drivetrain - Left stick and Right stick control respective Left and Right sides
 Arm 1      - Motor mapped to Joystick buttons, LB to go forward RB to go back
 Arm 2      - Motor mapped to Joystick buttons, LT to go forward RT to go back
 Servo 1    - Increments servo on button press, A increases values B decreases values
-Servo 2    - Increments servo on button press, A increases values B decreases values
+Servo 2    - Increments servo on button press, X increases values Y decreases values
 Empty      - Not currently mapped anywhere
 ```
 ## Mecanum Drive
@@ -102,7 +100,7 @@ Drive    - Motor location for each Mecanum wheel. Left stick controls forward, b
 Arm 1    - Motor mapped to Joystick buttons, LB to go forward RB to go back
 Arm 2    - Motor mapped to Joystick buttons, LT to go forward RT to go back
 Servo 1  - Increments servo on button press, A increases values B decreases values
-Servo 2  - Increments servo on button press, A increases values B decreases values
+Servo 2  - Increments servo on button press, X increases values Y decreases values
 Empty    - Not currently mapped anywhere
 
 
@@ -112,8 +110,8 @@ Empty    - Not currently mapped anywhere
 
  This library assumes you are mounting on the 0x60 i2c bus
  
- If you are getting an i2c device not found at 60 error solder i2c A5 
+ If you are getting an i2c device not found at 60 error you can solder i2c A5 
  
- Otherwise remove the address parameter in the line below 
+ Or remove the address parameter in the line below 
  
- `kit = ServoKit(channels=16, address=96)`
+ `hat = Py_Hat(address=96) -> hat = Py_Hat()`
