@@ -239,9 +239,9 @@ class Check_Input():
     """
 
   def __init__(self):
-     """
+    """
     Sets class variables for has_controller function and inits pygame
-    ...
+    
     """
 
     pygame.init()
@@ -253,11 +253,12 @@ class Check_Input():
     self.Inactivity = 7
 
   def has_controller(self):
-    """Adafruit Servokit implementation of a motor
+    """Returns true or false based on whether a controller is plugged in 
 
-    This function takes two arguments a pin and a angle. 
-    The pin number corresponds to the one on the pi-hat
-    ...
+    Lowers the time it takes to check controller disconnect if a controller is unplugged, prints error 
+
+
+
     """
 
     now = time.time()
