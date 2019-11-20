@@ -1,11 +1,11 @@
-# TG-Coral-Robot_Code
+# TG_Robot_Code
 Google coral Robot Code with the adafruit servokit library
 
 ## Get Started
-`git clone https://github.com/Danny-Dasilva/TG-Coral-Robot_Code.git`
+`git clone https://github.com/Danny-Dasilva/TG_Robot_Code.git`
  
  path to folder 
- `cd TG-Coral-Robot_Code`
+ `cd TG_Robot_Code`
  
  dependencies
  
