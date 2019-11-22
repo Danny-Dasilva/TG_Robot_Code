@@ -77,7 +77,7 @@ class Autonomous():
 
         time.sleep(time)
 
-    def stop(self, time):
+    def stop(self, time=.01):
         self.hat.motor(0, self.deadzone)
         self.hat.motor(2, self.deadzone)
         self.hat.motor(1, self.deadzone)
