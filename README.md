@@ -125,10 +125,7 @@ def my_custom_teleop():
 
     # initialize Pi Hat
     hat = Py_Hat(address=96)
-
-    # configure deadzone
-    deadzone = controller.deadzone()
-
+    
     while True:
         controller.event_get()
         # setup controls
@@ -142,7 +139,7 @@ def my_custom_teleop():
 
         # drivetrain examples
         hat.motor(0, leftstick)
-        hat.motor(2, leftstick)
+        hat.motor(1, -rightstick)
         # sleep for smooth loops
         sleep(.02)
 ```
