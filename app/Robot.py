@@ -101,6 +101,8 @@ class Controller():
 
         return self.gamepad.get_button(self.Joystick[button])
 
+    def get_axis_num(self,axisNum):
+        return self.gamepad.get_axis(axisNum)
     def set_axis(self, axis):
         """ Set Controller axis 
         
@@ -254,6 +256,10 @@ class Py_Hat():
             input value for the motor (ranges from 1 to -1)
 
         """
+        if(value>1.0):
+            value = 1.0
+        elif(value<-1.0):
+            value = -1.0
         self.kit.continuous_servo[pin].throttle = value
         
     def servo(self, pin, angle):
