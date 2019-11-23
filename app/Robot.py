@@ -79,6 +79,12 @@ class Controller():
         if js_name in ('Logitech F310'):
             self.Joystick = JoystickF310
         
+        while pygame.joystick.get_count() == 0:
+            pygame.joystick.quit()
+            pygame.init()
+            pygame.joystick.init()
+            print("plug joystick in")
+        
         self.gamepad = pygame.joystick.Joystick(0)
         self.gamepad.init()
 
