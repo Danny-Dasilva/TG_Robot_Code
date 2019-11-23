@@ -9,7 +9,8 @@ from time import sleep
 import csv
 
 from adafruit_servokit import ServoKit
-
+# Fix for pygame on the coral
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 path = os.path.dirname(os.path.abspath(__file__))
 
 

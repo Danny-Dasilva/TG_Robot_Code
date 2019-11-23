@@ -27,9 +27,6 @@ while True:
 gpio_in.close()
 
 
-# Fix for pygame on the coral
-os.environ["SDL_VIDEODRIVER"] = "dummy"
-
 
 #controller class
 controller = Controller()
