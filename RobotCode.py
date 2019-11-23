@@ -59,7 +59,7 @@ while True:
         print('reconnect the controller')
         #loop through all the pins and set them to 0
         for pin in range(16):
-            hat.motor(pin, deadzone)=
+            hat.motor(pin, deadzone)
         
        
     else:
