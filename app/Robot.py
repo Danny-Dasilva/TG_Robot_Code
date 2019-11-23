@@ -72,7 +72,6 @@ class Controller():
         js_name : string, optional
             The type of controller you are using 
         """
-
         pygame.init()
         pygame.joystick.init()
         #Redundancy
@@ -87,7 +86,8 @@ class Controller():
         
         self.gamepad = pygame.joystick.Joystick(0)
         self.gamepad.init()
-
+        self.joyinited = True
+        
     def set_button(self, button):
         """ Set Controller button 
         
@@ -182,6 +182,25 @@ class Controller():
                 return deadzone
             sleep(.03)
 
+    def has_controller(self):
+        try:
+            f = open("/dev/input/js0")
+            f.close()
+            if(self.joyinited):
+                return True
+            else:
+                while pygame.joystick.get_count() == 0:
+                    pygame.joystick.quit()
+                    pygame.init()
+                    pygame.joystick.init()
+                self.gamepad = pygame.joystick.Joystick(0)
+                self.gamepad.init()
+                self.joyinited = True
+                return True
+        except IOError:
+            self.joyinited = False
+            return False
+            
 
 
 
@@ -249,9 +268,6 @@ class Py_Hat():
             the corresponding pin on the pi-hat
         """
         self.kit.servo[pin].angle = angle
-
-
-
 
 class Check_Input():
   """
