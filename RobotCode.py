@@ -3,7 +3,7 @@
 # License: Public Domain 
 
 
-from app.Robot import Controller, Py_Hat, Check_Input
+from app.Robot import Controller, Py_Hat
 from My_Custom_Code import my_custom_teleop
 from time import sleep
 import os
@@ -11,7 +11,6 @@ import os
 from periphery import GPIO
 from time import sleep
 
-disconnect = Check_Input()
 gpio_in = GPIO(8, "in")
 
 
@@ -55,14 +54,12 @@ servo = 0
 
 while True:
     
-    if not disconnect.has_controller():
+    if not controller.has_controller():
     # handle disconnect
         print('reconnect the controller')
         #loop through all the pins and set them to 0
         for pin in range(16):
-            hat.motor(pin, deadzone)
-
-        print('reconnect')
+            hat.motor(pin, deadzone)=
         
        
     else:
