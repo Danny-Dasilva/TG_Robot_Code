@@ -17,7 +17,7 @@ gpio_in = GPIO(8, "in")
 
 while True:
     value = gpio_in.read()
-    if value == True:
+    if value == False:
         break
     else:
         my_custom_teleop()
