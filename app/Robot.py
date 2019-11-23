@@ -7,6 +7,7 @@ import time
 import os
 from time import sleep
 import csv
+from time import sleep
 
 from adafruit_servokit import ServoKit
 # Fix for pygame on the coral
@@ -100,6 +101,8 @@ class Controller():
 
         return self.gamepad.get_button(self.Joystick[button])
 
+    def get_axis_num(self,axisNum):
+        return self.gamepad.get_axis(axisNum)
     def set_axis(self, axis):
         """ Set Controller axis 
         
@@ -181,7 +184,6 @@ class Controller():
                     writer.writerow({'Deadzone': deadzone})
                 return deadzone
             sleep(.03)
-
     def has_controller(self):
         try:
             f = open("/dev/input/js0")
@@ -191,8 +193,9 @@ class Controller():
             else:
                 while pygame.joystick.get_count() == 0:
                     pygame.joystick.quit()
-                    pygame.init()
                     pygame.joystick.init()
+                pygame.joystick.quit()
+                pygame.joystick.init()
                 self.gamepad = pygame.joystick.Joystick(0)
                 self.gamepad.init()
                 self.joyinited = True
@@ -253,6 +256,10 @@ class Py_Hat():
             input value for the motor (ranges from 1 to -1)
 
         """
+        if(value>1.0):
+            value = 1.0
+        elif(value<-1.0):
+            value = -1.0
         self.kit.continuous_servo[pin].throttle = value
         
     def servo(self, pin, angle):
