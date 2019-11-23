@@ -238,7 +238,6 @@ class Py_Hat():
         ----------
         pin : int
             the corresponding pin on the pi-hat
-functional codef the servo, max angle depends on the type servo
         """
         self.kit.servo[pin].angle = angle
 
