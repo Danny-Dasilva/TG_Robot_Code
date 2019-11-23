@@ -11,7 +11,7 @@ import os
 
 def my_custom_autonomous(hat):
     auto = Autonomous(hat)
-    
+
     # Takes a value and time
 
     auto.forward(.8, 2)
@@ -28,7 +28,7 @@ def my_custom_autonomous(hat):
 
 
 def my_custom_teleop():
-    print("functional")
+    
     #controller class
     controller = Controller()
 
@@ -50,27 +50,12 @@ def my_custom_teleop():
         # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
-        
-        B = controller.set_button('B')
-        A = controller.set_button('A')
         LT = controller.set_axis('LT')
 
         # Button press to run Autonomous
         if LT > .75:
-            my_custom_autonomous(hat)
+            my_custom_autonomous(hat) 
 
-      
-        # Servo example
-        if A == 1:
-            servo = min(servo + .2, servo_max)
-            hat.servo(6, servo)
-            print("servo 1 active")
-        elif B == 1:
-            servo = max(servo - .2, servo_min)
-            hat.servo(6, servo)
-            print("servo 1 active")
-            
-        
         # drivetrain examples
         hat.motor(0, leftstick)
         hat.motor(2, leftstick)

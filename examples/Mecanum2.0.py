@@ -4,35 +4,26 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 from app.Robot import Controller, Py_Hat, Check_Input
 from app.Autonomous import Autonomous
-
+import Math
 from time import sleep
 import os
 
 
-def my_custom_autonomous():
-    auto = Autonomous()
+def my_custom_autonomous(hat):
+    auto = Autonomous(hat)
+    
+
     # Takes a value and time
 
     auto.forward(.8, 2)
     
-    auto.backward(1, 2)
+    auto.backward(1, 1)
     
-    auto.turn_left(.5, 2)
+    auto.turn_left(.3, 2)
     
-    auto.turn_right(.5, 2)
+    auto.turn_right(.3, 2)
 
     auto.stop()
 
@@ -165,10 +156,6 @@ def my_custom_teleop():
         # motor_2  front left
         # motor_3  back left
         # motor_4  front right
-
-        # Set Joystick
-        
-
 
         # Reset Deadzone
         if Start == Y == Home == 1:

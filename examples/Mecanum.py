@@ -7,7 +7,7 @@ from __future__ import division
 import time
 from time import sleep
 import pygame
-
+import Math
 from adafruit_servokit import ServoKit
 import os
 # This is set because normally pygame uses this video drive but the google coral does not support it
