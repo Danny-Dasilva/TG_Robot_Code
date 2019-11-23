@@ -15,7 +15,7 @@ def my_custom_autonomous(hat):
     # Takes a value and time
 
     auto.forward(.8, 2)
-    
+    your dumb
     auto.backward(1, 2)
     
     auto.turn_left(.5, 2)
