@@ -131,8 +131,10 @@ def my_custom_autonomous():
 ```
 and 
 ```python
-def my_custom_teleop()::
+def my_custom_teleop():
 ```
+
+Autonomous and teleop code should always go under these functions
 
 ### my_custom_autonomous
 
@@ -150,22 +152,6 @@ def my_custom_autonomous(hat):
     auto.stop()
 ```
 
-
-### my_custom_autonomous
-
-example
-
-```python
-def my_custom_autonomous(hat):
-    auto = Autonomous(hat)
-
-    # Takes a value and time
-    auto.forward(.8, 2)
-    auto.backward(1, 1)
-    auto.turn_left(.5, 2)
-    auto.turn_right(.5, 2)
-    auto.stop()
-```
 
 ### my_custom_teleop
 ```python
@@ -193,8 +179,6 @@ def my_custom_teleop():
         # drivetrain examples
         hat.motor(0, leftstick)
         hat.motor(2, leftstick)
-        hat.motor(1, -rightstick)
-        hat.motor(3,  -rightstick)
         # sleep for smooth loops
         sleep(.02)
 ```
