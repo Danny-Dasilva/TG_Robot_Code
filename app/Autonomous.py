@@ -3,7 +3,7 @@
 # License: Public Domain 
 
 
-from Robot import Controller, Py_Hat, Check_Input
+from .Robot import Controller, Py_Hat, Check_Input
 
 class Autonomous():
     def _init__(self):

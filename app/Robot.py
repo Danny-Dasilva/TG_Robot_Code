@@ -16,6 +16,8 @@ path = os.path.dirname(os.path.abspath(__file__))
 JoystickF310 = {
 		"leftstick" : 1,
 		"rightstick" : 4,
+        "leftstickx" : 0,
+		"rightstickx" : 3,
 		"B" : 1,
 		"X" : 2,
 		"A" : 0,

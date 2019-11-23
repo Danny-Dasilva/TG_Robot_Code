@@ -2,7 +2,7 @@
 
 
 
-from app.Robot import Controller, Py_Hat, Check_Input,
+from app.Robot import Controller, Py_Hat, Check_Input
 from app.Autonomous import Autonomous
 
 from time import sleep
@@ -49,6 +49,7 @@ def my_custom_teleop():
         # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
+        
         B = controller.set_button('B')
         A = controller.set_button('A')
         LT = controller.set_axis('LT')
