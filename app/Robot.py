@@ -7,6 +7,7 @@ import time
 import os
 from time import sleep
 import csv
+from time import sleep
 
 from adafruit_servokit import ServoKit
 # Fix for pygame on the coral
@@ -181,7 +182,6 @@ class Controller():
                     writer.writerow({'Deadzone': deadzone})
                 return deadzone
             sleep(.03)
-
     def has_controller(self):
         try:
             f = open("/dev/input/js0")
@@ -191,8 +191,9 @@ class Controller():
             else:
                 while pygame.joystick.get_count() == 0:
                     pygame.joystick.quit()
-                    pygame.init()
                     pygame.joystick.init()
+                pygame.joystick.quit()
+                pygame.joystick.init()
                 self.gamepad = pygame.joystick.Joystick(0)
                 self.gamepad.init()
                 self.joyinited = True
