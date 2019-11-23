@@ -9,8 +9,9 @@ from time import sleep
 import os
 
 
-def my_custom_autonomous():
-    auto = Autonomous()
+def my_custom_autonomous(hat):
+    auto = Autonomous(hat)
+    
     # Takes a value and time
 
     auto.forward(.8, 2)
@@ -27,7 +28,7 @@ def my_custom_autonomous():
 
 
 def my_custom_teleop():
-
+    print("functional")
     #controller class
     controller = Controller()
 
@@ -56,7 +57,7 @@ def my_custom_teleop():
 
         # Button press to run Autonomous
         if LT > .75:
-            my_custom_autonomous()
+            my_custom_autonomous(hat)
 
       
         # Servo example

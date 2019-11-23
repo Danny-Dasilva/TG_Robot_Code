@@ -28,7 +28,7 @@ def my_custom_autonomous():
 
     auto.forward(.8, 2)
     
-    auto.backward(1, 1)
+    auto.backward(1, 2)
     
     auto.turn_left(.5, 2)
     

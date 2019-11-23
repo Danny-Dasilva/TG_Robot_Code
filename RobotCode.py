@@ -11,15 +11,16 @@ import os
 from periphery import GPIO
 from time import sleep
 
-
+disconnect = Check_Input()
 gpio_in = GPIO(8, "in")
+
 
 while True:
     value = gpio_in.read()
-    if value == False:
+    if value == True:
         break
     else:
-        my_custom_teleop
+        my_custom_teleop()
     sleep(.01)
 
 
@@ -47,7 +48,7 @@ deadzone = controller.deadzone()
 servo_min = 0  
 servo_max = 360
 servo = 0
-disconnect = Check_Input()
+
 
 
 
