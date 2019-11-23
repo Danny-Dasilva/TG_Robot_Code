@@ -19,6 +19,7 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   chmod +x libgpiod.sh
   ./libgpiod.sh
   rm -rf ./libgpiod.sh
+  sudo pip3 install python-periphery
 
 else
   # Install gstreamer

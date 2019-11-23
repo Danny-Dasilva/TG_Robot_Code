@@ -4,9 +4,26 @@
 
 
 from app.Robot import Controller, Py_Hat, Check_Input
+from My_Custom_Code import my_custom_teleop
 from time import sleep
 import os
 
+from periphery import GPIO
+from time import sleep
+
+
+gpio_in = GPIO(8, "in")
+
+while True:
+    value = gpio_in.read()
+    if value == False:
+        break
+    else:
+        my_custom_teleop
+    sleep(.01)
+
+
+gpio_in.close()
 
 
 # Fix for pygame on the coral
