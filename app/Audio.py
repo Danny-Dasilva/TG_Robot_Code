@@ -10,6 +10,6 @@ class Audio():
             language = 'en'
             
             status = gTTS(text=string, lang=language, slow=False) 
-            status.save("status.mp3")
+            status.save("Audio/status.mp3")
         
         self.previous_string = string

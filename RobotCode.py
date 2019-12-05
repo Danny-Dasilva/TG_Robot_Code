@@ -150,8 +150,10 @@ while True:
             deadzone = controller.control_loop(.01, hat)
         
         if Start == A == Home == 1:
-            audio('custom_teleop')
+            a.audio('custom teleop')
+            
             my_custom_teleop()
+            
 
 
         
