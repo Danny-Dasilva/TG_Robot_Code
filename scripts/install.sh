@@ -1,4 +1,4 @@
-
+# sudo pip3 install pygame==1.9.4
 if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   echo "Installing Mercurial and pygame"
   sudo apt-get install mercurial -y

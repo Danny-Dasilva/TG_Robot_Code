@@ -7,23 +7,11 @@ from app.Robot import Controller, Py_Hat
 from My_Custom_Code import my_custom_teleop
 from time import sleep
 import os
-
-from periphery import GPIO
 from time import sleep
+from app.Audio import Audio
 
-gpio_in = GPIO(8, "in")
+a = Audio()
 
-
-while True:
-    value = gpio_in.read()
-    if value == False:
-        break
-    else:
-        my_custom_teleop()
-    sleep(.01)
-
-
-gpio_in.close()
 
 
 
@@ -57,6 +45,8 @@ while True:
     if not controller.has_controller():
     # handle disconnect
         print('reconnect the controller')
+        a.audio('reconnect')
+
         #loop through all the pins and set them to 0
         for pin in range(16):
             hat.motor(pin, deadzone)
@@ -64,7 +54,7 @@ while True:
        
     else:
         controller.event_get()
-        
+        a.audio('main loop')
         # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
@@ -129,9 +119,6 @@ while True:
             servo = max(servo - .2, servo_min)
             hat.servo(7, servo)
             print("servo 2 active")
-
-
-
         
             
             
@@ -159,7 +146,14 @@ while True:
 
         # Reset Deadzone
         if Start == Y == Home == 1:
+            a.audio('deadzone')
             deadzone = controller.control_loop(.01, hat)
+        
+        if Start == A == Home == 1:
+            audio('custom_teleop')
+            my_custom_teleop()
+
+
         
         # sleep for smooth loops
         sleep(.02)
