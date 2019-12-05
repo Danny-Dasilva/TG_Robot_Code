@@ -1,5 +1,5 @@
 from gtts import gTTS 
-
+import os
 
 class Audio():
     def __init__(self):
@@ -10,6 +10,6 @@ class Audio():
             language = 'en'
             
             status = gTTS(text=string, lang=language, slow=False) 
-            status.save("Audio/status.mp3")
+            status.save("/home/mendel/TG_Robot_Code/Audio/status.mp3")
         
         self.previous_string = string
