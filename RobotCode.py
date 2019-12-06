@@ -27,11 +27,14 @@ hat = Py_Hat(address=96)
 deadzone = controller.deadzone()
 
 
+yess, val = controller.read()
+print(yess, val)
+
 # Configure min and max servo angle as well  as init
 servo_min = 0  
 servo_max = 360
 servo = 0
-
+deadzone = .06
 
 while True:
     
@@ -47,7 +50,7 @@ while True:
        
     else:
         controller.event_get()
-        #a.audio('main loop')
+        
         # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
@@ -65,7 +68,7 @@ while True:
         Back = controller.set_button('Back')
 
 
-
+        
         
         #  Arm A motor
         if LB == 1:
@@ -144,11 +147,10 @@ while True:
         
         if Start == A == Home == 1:
             a.audio('custom teleop')
+            custom_code = controller.read_and_write(deadzone, change=True)
             
-            my_custom_teleop()
-            
-
-
+        if Back == 1:
+            a.audio('main loop')
         
         # sleep for smooth loops
         sleep(.02)

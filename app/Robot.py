@@ -114,15 +114,17 @@ class Controller():
         """
 
         return self.gamepad.get_axis(self.Joystick[axis])
-    
-    def event_get(self):
+
+    @staticmethod
+    def event_get():
         """ Set deadzone variable 
 
         """
 
         pygame.event.get()
 
-    def deadzone(self):
+    @staticmethod
+    def deadzone():
         """ Set deadzone variable 
 
         Reads from a csv file and returns a deadzone
@@ -171,19 +173,16 @@ class Controller():
                 deadzone = deadzone + increment
             if X == 1:
                 deadzone = deadzone - increment
-
+            
             for i in range(4):
                 hat.motor(i, deadzone)
         
 
             if Back == 1:
-                with open(path + '/var.csv', mode='w') as csv_file:
-                    fieldnames = ['Deadzone']
-                    writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-                    writer.writeheader()
-                    writer.writerow({'Deadzone': deadzone})
+                self.read_and_write(deadzone)
                 return deadzone
             sleep(.03)
+
     def has_controller(self):
         try:
             f = open("/dev/input/js0")
@@ -203,7 +202,55 @@ class Controller():
         except IOError:
             self.joyinited = False
             return False
-            
+    
+    def set_custom_code(self):
+        value = False
+        with open(path + '/in.csv', mode='w') as csv_file:
+            fieldnames = ['Deadzone', 'Custom']
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerow({'Custom': value})
+
+    @staticmethod
+    def read_and_write(new_dead, change = False):
+
+
+        with open(path + '/in.csv', mode='r') as csv_file:
+                csv_reader = csv.DictReader(csv_file)
+                for row in csv_reader:
+                    custom_code = (row["Custom"])
+                    deadzone = (float(row["Deadzone"]))
+        if change == True:
+            if custom_code == str(True):
+                custom_code = False
+            else:
+                custom_code = True
+        if new_dead != deadzone:
+            deadzone = new_dead
+        print(deadzone, custom_code)
+        with open(path + '/in.csv', mode='w') as csv_file:
+                fieldnames = ['Deadzone', 'Custom']
+                writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerow({'Deadzone': deadzone, 'Custom': custom_code} )
+        print("wrote", deadzone, custom_code)
+
+    @staticmethod
+    def read():
+        """ Set deadzone variable 
+
+        Reads from a csv file and returns a deadzone
+        ...
+
+        """
+
+
+        with open(path +'/in.csv', mode='r') as csv_file:
+            csv_reader = csv.DictReader(csv_file)
+            for row in csv_reader:
+                auto = (row["Custom"])
+                deadzone = (float(row["Deadzone"]))
+            return deadzone, auto
 
 
 
