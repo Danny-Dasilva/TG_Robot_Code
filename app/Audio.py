@@ -1,11 +1,10 @@
 from gtts import gTTS 
-import os
 
 class Audio():
     def __init__(self):
         self.previous_string= "none"
     def audio(self, string):
-        print(string, self.previous_string)
+        
         if string != self.previous_string:
             language = 'en'
             

@@ -5,7 +5,7 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   sudo apt-get install mplayer
   sudo apt-get install alsa-utils
 
-  sudo amixer -D pulse sset Master 50%
+  amixer sset 'Master' 50%
 
 
   

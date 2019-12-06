@@ -27,17 +27,10 @@ hat = Py_Hat(address=96)
 deadzone = controller.deadzone()
 
 
-
 # Configure min and max servo angle as well  as init
 servo_min = 0  
 servo_max = 360
 servo = 0
-
-
-
-
-
-
 
 
 while True:
@@ -54,7 +47,7 @@ while True:
        
     else:
         controller.event_get()
-        a.audio('main loop')
+        #a.audio('main loop')
         # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
