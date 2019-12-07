@@ -142,7 +142,8 @@ def my_custom_teleop():
         hat.motor(1, -rightstick)
         # sleep for smooth loops
         sleep(.02)
+```
+
 ## Run custom code
 
-in the TG_Robot_Code dir in a terminal type `sudo python3 My_Custom_Code.py`
-```
+in the TG_Robot_Code folder in a terminal type `sudo python3 My_Custom_Code.py`
