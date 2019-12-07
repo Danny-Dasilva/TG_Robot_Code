@@ -180,7 +180,7 @@ class Controller():
 
             if Back == 1:
                 self.read_and_write(deadzone)
-                print(deadzone)
+                
                 return deadzone
             sleep(.03)
 
@@ -228,7 +228,7 @@ class Controller():
                 custom_code = True
         if new_dead != deadzone:
             deadzone = new_dead
-        print(deadzone, custom_code)
+        print(change, "change")
         with open(path + '/in.csv', mode='w') as csv_file:
                 fieldnames = ['Deadzone', 'Custom']
                 writer = csv.DictWriter(csv_file, fieldnames=fieldnames)

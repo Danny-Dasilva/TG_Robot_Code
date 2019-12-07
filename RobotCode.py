@@ -147,8 +147,6 @@ for i in infinite_sequence():
         if Start == Y == Home == 1:
             a.audio('deadzone')
             deadzone = controller.control_loop(.01, hat)
-            print(deadzone)
-            custom_code = controller.read_and_write(deadzone, change=True)
         
         
      
