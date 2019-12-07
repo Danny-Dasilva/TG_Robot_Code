@@ -26,13 +26,12 @@ hat = Py_Hat(address=96)
 change = False
 
 deadzone, custom_code = controller.read()
-
+print(deadzone, "read in ")
 
 # Configure min and max servo angle as well  as init
 servo_min = 0  
 servo_max = 360
 servo = 0
-deadzone = .06
 
 def infinite_sequence():
     num = 0
@@ -148,6 +147,7 @@ for i in infinite_sequence():
         if Start == Y == Home == 1:
             a.audio('deadzone')
             deadzone = controller.control_loop(.01, hat)
+            print(deadzone)
             custom_code = controller.read_and_write(deadzone, change=True)
         
         

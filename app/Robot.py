@@ -180,6 +180,7 @@ class Controller():
 
             if Back == 1:
                 self.read_and_write(deadzone)
+                print(deadzone)
                 return deadzone
             sleep(.03)
 
@@ -233,6 +234,7 @@ class Controller():
                 writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerow({'Deadzone': deadzone, 'Custom': custom_code} )
+                print(deadzone, custom_code, "write")
         return str(custom_code)
 
     @staticmethod
