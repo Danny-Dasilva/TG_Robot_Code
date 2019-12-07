@@ -4,9 +4,9 @@
 
 from app.Robot import Controller, Py_Hat, Check_Input
 from app.Autonomous import Autonomous
-
+# import os
+# os.system("sudo pkill -9 python")
 from time import sleep
-import os
 
 
 def my_custom_autonomous(hat):
@@ -58,8 +58,11 @@ def my_custom_teleop():
 
 
 
-
-
+if __name__ == "__main__":
+    import os
+    os.system("sudo pkill -9 -f RobotCode.py")
+    
+    my_custom_teleop()
 
 
 
