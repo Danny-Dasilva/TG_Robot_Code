@@ -152,6 +152,7 @@ while True:
         if Back == 1:
             a.audio('main loop')
         if custom_code == True:
+            a.audio('custom teleop')
             my_custom_teleop()
         # sleep for smooth loops
         sleep(.02)
