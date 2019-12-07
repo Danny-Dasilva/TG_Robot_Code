@@ -15,9 +15,13 @@ else
 
   if grep -s -q "Raspberry Pi" /sys/firmware/devicetree/base/model; then
 	echo "installing auto code on pi"
-    line="@reboot sudo python3 /home/pi/Desktop/TG_Robot_Code/Audio/audio_loop.py"
-		(crontab -u "pi" -l; echo "$line" ) | crontab -u "pi" -
-
+  
+	line="@reboot python3 $ROUTE/Audio/audio_loop.py"
+  (crontab -u "pi" -l; echo "$line" ) | crontab -u "pi" -
+  line="@reboot $ROUTE/Audio/test.sh "
+  (crontab -u "pi" -l; echo "$line" ) | crontab -u "pi" -
+  line="@reboot sudo python3 $ROUTE/RobotCode.py"
+  (crontab -u "pi" -l; echo "$line" ) | crontab -u "pi" 
   
 
 
