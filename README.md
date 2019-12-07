@@ -128,7 +128,7 @@ def my_custom_teleop():
     
     while True:
         controller.event_get()
-        # setup controls1
+        # setup controls
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
         LT = controller.set_axis('LT')
