@@ -2,13 +2,13 @@
 # Author: Danny Dasilva
 # License: Public Domain 
 
-
 from app.Robot import Controller, Py_Hat
 from My_Custom_Code import my_custom_teleop
 from time import sleep
 import os
 from time import sleep
 from app.Audio import Audio
+
 
 a = Audio()
 
@@ -23,9 +23,7 @@ controller = Controller()
 hat = Py_Hat(address=96)
 
 
-# configure deadzone
-deadzone = controller.deadzone()
-
+change = False
 
 deadzone, custom_code = controller.read()
 
@@ -154,9 +152,11 @@ for i in infinite_sequence():
         
      
         if Start == A == Home == 1:
-            a.audio('custom teleop')
-            custom_code = controller.read_and_write(deadzone, change=True)
-            
+            if change == False:
+                
+                custom_code = controller.read_and_write(deadzone, change=True)
+                change = True
+        print(custom_code)
         if Back == 1:
             a.audio('main loop')
         
