@@ -27,8 +27,8 @@ hat = Py_Hat(address=96)
 deadzone = controller.deadzone()
 
 
-yess, val = controller.read()
-print(yess, val)
+deadzone, custom_code = controller.read()
+
 
 # Configure min and max servo angle as well  as init
 servo_min = 0  
@@ -151,7 +151,8 @@ while True:
             
         if Back == 1:
             a.audio('main loop')
-        
+        if custom_code == True:
+            my_custom_teleop()
         # sleep for smooth loops
         sleep(.02)
         
