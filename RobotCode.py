@@ -36,7 +36,13 @@ servo_max = 360
 servo = 0
 deadzone = .06
 
-while True:
+def infinite_sequence():
+    num = 0
+    while True:
+        yield num
+        num += 1
+
+for i in infinite_sequence():
     
     if not controller.has_controller():
     # handle disconnect
@@ -81,7 +87,7 @@ while True:
             hat.motor(4, deadzone)
 
 
-        #  Arm B motor
+        #  Arm B motorinterr
         if LT > .75:
             hat.motor(5, 1)
             print("Motor Arm 2 forward")
@@ -145,16 +151,21 @@ while True:
             a.audio('deadzone')
             deadzone = controller.control_loop(.01, hat)
         
+        
+     
         if Start == A == Home == 1:
             a.audio('custom teleop')
             custom_code = controller.read_and_write(deadzone, change=True)
             
         if Back == 1:
             a.audio('main loop')
-        if custom_code == True:
-            a.audio('custom teleop')
-            my_custom_teleop()
-        # sleep for smooth loops
+        
+        if i > 50:
+            if custom_code == 'True':
+                a.audio('custom teleop')
+                my_custom_teleop()
+        #sleep for smooth loops
+        
         sleep(.02)
         
 

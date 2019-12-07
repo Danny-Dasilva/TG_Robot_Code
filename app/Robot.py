@@ -233,7 +233,7 @@ class Controller():
                 writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerow({'Deadzone': deadzone, 'Custom': custom_code} )
-        print("wrote", deadzone, custom_code)
+        return str(custom_code)
 
     @staticmethod
     def read():

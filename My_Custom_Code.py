@@ -28,6 +28,7 @@ def my_custom_autonomous(hat):
 
 
 def my_custom_teleop():
+    print("custom code")
     #controller class
     controller = Controller()
 
@@ -35,6 +36,7 @@ def my_custom_teleop():
     hat = Py_Hat(address=96)
     
     while True:
+        
         controller.event_get()
         # setup controls
         leftstick = controller.set_axis('leftstick')
