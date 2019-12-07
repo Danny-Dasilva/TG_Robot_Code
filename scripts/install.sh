@@ -19,7 +19,11 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   chmod +x libgpiod.sh
   ./libgpiod.sh
   rm -rf ./libgpiod.sh
-  sudo pip3 install python-periphery
+  sudo pip3 install gTTS
+  sudo apt-get install mplayer
+  sudo apt-get install alsa-utils
+
+  amixer sset 'Master' 50%
 
 else
   # Install gstreamer
@@ -34,6 +38,11 @@ else
       ./libgpiod.sh
       rm -rf ./libgpiod.sh
       sudo pip3 install pygame
+      sudo pip3 install gTTS
+      sudo apt-get install mplayer
+      sudo apt-get install alsa-utils
+
+      amixer sset 'Master' 50%
   fi
 fi
 
