@@ -23,3 +23,8 @@ else
   (crontab -u "pi" -l; echo "$line" ) | crontab -u "pi" -
   line="@reboot sudo python3 $ROUTE/RobotCode.py"
   (crontab -u "pi" -l; echo "$line" ) | crontab -u "pi" 
+  
+
+
+  fi
+fi
