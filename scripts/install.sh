@@ -20,8 +20,8 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   ./libgpiod.sh
   rm -rf ./libgpiod.sh
   sudo pip3 install gTTS
-  sudo apt-get install mplayer
-  sudo apt-get install alsa-utils
+  sudo apt-get install mplayer -y
+  sudo apt-get install alsa-utils -y
 
   amixer sset 'Master' 50%
 
