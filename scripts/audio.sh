@@ -2,6 +2,7 @@
 export ROUTE=$PWD
 if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
 	echo "installing auto code on Coral"
+  crontab -r
   line="@reboot python3 $ROUTE/Audio/audio_loop.py"
   (crontab -u "mendel" -l; echo "$line" ) | crontab -u "mendel" -
   line="@reboot $ROUTE/Audio/test.sh "
