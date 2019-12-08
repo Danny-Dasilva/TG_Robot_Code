@@ -5,7 +5,7 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   hg clone https://bitbucket.org/pygame/pygame
   cd pygame
   echo "Installing pygame dependencies"
-  sudo apt-get install python3-dev python3-numpy libsdl-dev libsdl-image1.2-dev \
+  sudo apt-get install python3-dev libsdl-dev libsdl-image1.2-dev \
   libsdl-mixer1.2-dev libsdl-ttf2.0-dev libsmpeg-dev libportmidi-dev \
   libavformat-dev libswscale-dev libjpeg-dev libfreetype6-dev -y
   sudo python3 setup.py build
@@ -21,7 +21,6 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   rm -rf ./libgpiod.sh
   sudo pip3 install gTTS
   sudo apt-get install mplayer -y
-  sudo apt-get install alsa-utils -y
 
   amixer sset 'Master' 50%
 
