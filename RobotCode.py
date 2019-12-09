@@ -26,7 +26,7 @@ hat = Py_Hat(address=96)
 change = False
 
 deadzone, custom_code = controller.read()
-print(deadzone, "read in ")
+
 
 # Configure min and max servo angle as well  as init
 servo_min = 0  
@@ -82,7 +82,7 @@ for i in infinite_sequence():
             print("Motor Arm 1 back")
         else:
             hat.motor(4, deadzone)
-BrooklynAPI
+
             hat.motor(5, 1)
             print("Motor Arm 2 forward")
         elif RT > .75:
@@ -123,7 +123,7 @@ BrooklynAPI
             hat.motor(0, leftstick)
             hat.motor(2, leftstick)
             print('leftstick')
-BrooklynAPI
+            
         if  abs(leftstick) < .05:
             hat.motor(0, deadzone)
             hat.motor(2, deadzone)
