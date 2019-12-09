@@ -82,7 +82,8 @@ for i in infinite_sequence():
             print("Motor Arm 1 back")
         else:
             hat.motor(4, deadzone)
-
+            
+        if LT > .75:
             hat.motor(5, 1)
             print("Motor Arm 2 forward")
         elif RT > .75:
