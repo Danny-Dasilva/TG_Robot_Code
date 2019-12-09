@@ -15,10 +15,7 @@ if grep -s -q "MX8MQ" /sys/firmware/devicetree/base/model; then
   echo "Installing Servokit"
   sudo pip3 install adafruit-circuitpython-servokit
   echo "Adding Libgiod Bindings"
-  wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/libgpiod.sh
-  chmod +x libgpiod.sh
-  ./libgpiod.sh
-  rm -rf ./libgpiod.sh
+  sudo apt-get install python3-libgiod - y
   sudo pip3 install gTTS
   sudo apt-get install mplayer -y
 
