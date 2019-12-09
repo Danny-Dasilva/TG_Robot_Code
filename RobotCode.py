@@ -82,10 +82,7 @@ for i in infinite_sequence():
             print("Motor Arm 1 back")
         else:
             hat.motor(4, deadzone)
-
-
-        #  Arm B motorinterr
-        if LT > .75:
+BrooklynAPI
             hat.motor(5, 1)
             print("Motor Arm 2 forward")
         elif RT > .75:
@@ -126,7 +123,7 @@ for i in infinite_sequence():
             hat.motor(0, leftstick)
             hat.motor(2, leftstick)
             print('leftstick')
-
+BrooklynAPI
         if  abs(leftstick) < .05:
             hat.motor(0, deadzone)
             hat.motor(2, deadzone)

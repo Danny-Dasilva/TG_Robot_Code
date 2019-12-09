@@ -42,6 +42,8 @@ def my_custom_teleop():
         leftstick = controller.set_axis('leftstick')
         rightstick = controller.set_axis('rightstick')
         LT = controller.set_axis('LT')
+        # button example - note set_button vs set_axis
+        A = controller.set_button('A')
 
         # Button press to run Autonomous
         if LT > .75:
