@@ -7,10 +7,7 @@ from My_Custom_Code import my_custom_teleop
 from time import sleep
 import os
 from time import sleep
-from app.Audio import Audio
 
-
-a = Audio()
 
 
 
@@ -44,7 +41,6 @@ for i in infinite_sequence():
     if not controller.has_controller():
     # handle disconnect
         print('reconnect the controller')
-        a.audio('reconnect')
 
         #loop through all the pins and set them to 0
         for pin in range(16):
@@ -143,7 +139,6 @@ for i in infinite_sequence():
 
         # Reset Deadzone
         if Start == Y == Home == 1:
-            a.audio('deadzone')
             deadzone = controller.control_loop(.01, hat)
         
         
@@ -154,12 +149,8 @@ for i in infinite_sequence():
                 custom_code = controller.read_and_write(deadzone, change=True)
                 change = True
         print(custom_code)
-        if Back == 1:
-            a.audio('main loop')
-        
         if i > 50:
             if custom_code == 'True':
-                a.audio('custom teleop')
                 my_custom_teleop()
         #sleep for smooth loops
         
