@@ -345,7 +345,7 @@ class Check_Input():
     self.gamepad = 0
     self.Recon_timeout = 7
     self.Inactivity = 7
-
+#deprecated
   def has_controller(self):
     """Returns true or false based on whether a controller is plugged in 
     ...
